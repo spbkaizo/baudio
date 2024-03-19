@@ -1,5 +1,9 @@
 # PCM2706 DAC Build
 
+# Schematic
+
+![schematic](schematics/PCM2706DAC.svg)
+
 
 ## Introduction
 

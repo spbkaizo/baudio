@@ -1,5 +1,9 @@
 # Power Supply
 
+# Schematic
+
+![schematic](schematics/Power%20Supply.svg)
+
 Few things of note here.
 
 ## Negative Voltage Generator (LM2663)

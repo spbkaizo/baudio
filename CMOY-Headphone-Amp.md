@@ -1,6 +1,11 @@
 
+# CMoy Amplifier Build
 
+## Schematic
 
+![schematic](schematics/Cmoy%20Amp.svg)
+
+![buffers](schematics/Cmoy%20Buffers.svg)
 
 ## Part selection
 
