@@ -20,7 +20,7 @@ The CMoy headphone amplifier, named after its inventor, Chu Moy, is a renowned D
 
 Yes, we've got one crammed in here.
 
-For more details on this, have a look at [CMOY-HeadphoneAmp.md](CMOY-HeadphoneAmp.md)
+For more details on this, have a look at [CMOY-HeadphoneAmp.md](CMOY-Headphone-Amp.md)
 
 ## Power Supply
 
