@@ -116,13 +116,13 @@ The filter works on the principle that capacitors resist changes in voltage. At 
 
 The cutoff frequency of the filter is determined by the values of the resistor (R2) and the capacitor (C2), which can be calculated using the formula 
 
-\( f_c = \frac{1}{2\pi R2 C2} \)
+$f_c = \frac{1}{2\pi R2 C2}$
 
 This frequency is the point at which the signal starts to be attenuated. Frequencies above this point pass through with less attenuation, while those below are increasingly attenuated.
 
-By carefully choosing R2 and C2, the designer of a CMoy amplifier can set the desired cutoff frequency to ensure that the full range of audio frequencies important for music reproduction are passed through to the amplifier, while blocking unwanted low-frequency noise and DC offset.
+By carefully choosing R2 and C2, you can set the desired cutoff frequency to ensure that the full range of audio frequencies important for music reproduction are passed through to the amplifier, while blocking unwanted low-frequency noise and DC offset.
 
-```
+```python
 import sys
 import math
 
@@ -157,7 +157,7 @@ Why might you want to be changing these values?  I'm glad you asked....
 
 #### Resistor Noise
 
-tl;dr - stick with the defaults on the schematic, don't worry about it, and the answer is approximately \(5.74 \mu V_{\text{rms}}\).
+tl;dr - stick with the defaults on the schematic, don't worry about it, and the answer is approximately 5.74mV.
 
 Johnson-Nyquist noise, often just called thermal noise, is a type of background noise that's present in all electronic devices, including the CMoy headphone amplifier you're building. It comes from the random motion of electrons in the conductive materials (like the resistors) due to their temperature. This noise is always there, as long as the temperature is above absolute zero (-273.15°C), so even in a perfectly designed circuit, you can't get rid of it entirely.
 
@@ -179,7 +179,7 @@ In summary, calculating Johnson-Nyquist noise when changing C2 and R2 in a CMoy 
 
 
 
-```
+```python
 import sys
 import math
 
@@ -208,9 +208,9 @@ else:
 ")"
 ```
 
-Let's work through an example, as it will lead us onto the next design consideration.  With C2 as 0.1uf and R2 as 100k (as in the schematic) the value is \(5.74 \mu V_{\text{rms}}\).  This is before we head into the 'tweaking the gain' section, so if you use the schematic values as is, we would have a gain of 11.  As a result, we will expect to have \(63.09 \mu V_{\text{rms}}\).
+Let's work through an example, as it will lead us onto the next design consideration.  With C2 as 0.1uf and R2 as 100k (as in the schematic) the value is $5.74 \mu V_{\text{rms}}$.  This is before we head into the 'tweaking the gain' section, so if you use the schematic values as is, we would have a gain of 11.  As a result, we will expect to have $63.09 \mu V_{\text{rms}}$.
 
-If you were to swap these out for C2 1uF and R2 10k, then the value pre amp drops to \(1.81 \mu V_{\text{rms}}\), and post amp to \(19.95 \mu V_{\text{rms}}\)... This however will introduce some new issues and challenges, with the pot.  iYou generally need to have a pot 10x the value of R2, so you're now likely to need to a 100K pot.  My advice would be to stick with the default values, and only change them after doing a lot more research on how all these components work together in tandom.  A brief overview of this is given below. 
+If you were to swap these out for C2 1uF and R2 10k, then the value pre amp drops to $1.81 \mu V_{\text{rms}}$, and post amp to $19.95 \mu V_{\text{rms}}$... This however will introduce some new issues and challenges, with the pot.  iYou generally need to have a pot 10x the value of R2, so you're now likely to need to a 100K pot.  My advice would be to stick with the default values, and only change them after doing a lot more research on how all these components work together in tandom.  A brief overview of this is given below. 
 
 #### Pot Selection
 

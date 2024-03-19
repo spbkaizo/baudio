@@ -4,7 +4,7 @@ Few things of note here.
 
 ## Negative Voltage Generator (LM2663)
 
-The LM2663 is a CMOS charge-pump voltage converter that inverts a positive voltage in the range of 1.5 V to 5.5 V to the corresponding negative voltage. It is designed to provide up to 200 mA of output current using two low-cost capacitors, eliminating the cost, size, and electromagnetic interference (EMI) associated with inductor-based converters. The device operates with a low current of only 300 uA, making it efficient for applications requiring negative voltage generation.
+The LM2663 is a CMOS charge-pump voltage converter that inverts a positive voltage in the range of 1.5V to 5.5V to the corresponding negative voltage. It is designed to provide up to 200 mA of output current using two low-cost capacitors, eliminating the cost, size, and electromagnetic interference (EMI) associated with inductor-based converters. The device operates with a low current of only 300 uA, making it efficient for applications requiring negative voltage generation.
 
 The LM2663 charge pump voltage converter requires two external capacitors for its operation: one flying capacitor (C1) and one reservoir capacitor (C2). The typical values for these capacitors depend on the specific application requirements, including the desired output current and voltage, but a general guideline is to use capacitors with values in the range of 10 µF to 100 µF.
 
@@ -30,3 +30,8 @@ The LM1117 is a popular linear voltage regulator we use to power the DAC, which 
 
 The LM117  can deliver up to 800mA of output current, which makes it suitable for medium-power applications. You should have plenty left over for powering other 3.3v devices. 
 
+## Power Supply Capacitors
+
+To ensure we have enough power in the reservoir, there are quite a few caps in the circuit, mainly to support the Cmoy amplifier.  The schematic shows 220uF - I think these are reasonable values.
+
+Going higher will increase the strain on the lm2663 at power on - the surge current while the caps charge up is not a small amount.  The USB specification will limit the device power to 500mA, so interesting things could happen here if you deviate too much.  If you think you're encountering issues with this, please raise an issue and we can try and work through it.

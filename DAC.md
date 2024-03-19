@@ -28,10 +28,10 @@ Performance wise, it's not the worlds best, but more on that later.  For now, it
 We have exposed a jumpered position to toggle the outputs between I2S and S/PDIF.  I2S is ideal for direct digital interface with audio processors and DACs, offering high-quality stereo audio over a minimal number of lines. In contrast, S/PDIF is perfect for transferring digital audio signals over longer distances without degradation, commonly used in consumer audio equipment and home theaters.  BTW, you've not lived until you've experience the thrill of hooking up an LED to S/PDIF and shoving it into another piece of sound equipment.  It actually works...
 
 
-## Daissy Chaining
+## Daisy Chaining
 
 You can daisy chain another DAC - we highly recommend the PCM5102A devices, available from AliExpress or other similar places.  Get one of these ones: https://raspberrypi.stackexchange.com/questions/76188/how-to-make-pcm5102-dac-work-on-raspberry-pi-zerow as the board is designed to let you simply piggyback it onto ours.
 
-All the pins needed
+All the pins needed should be exposed.
 
 
