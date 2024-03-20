@@ -30,11 +30,17 @@ Pay attention to the chip pins, 1 is the one with the dot.  Match it up on the p
 
 At this point, you should also solder into place UC1, UC2, UC5.  These are the reservoir caps for the USB 5v supply.
 
-After those, place PSC1, PSC3, PSC4, PSC6 and PSC5.
+After those, place PSC1, PSC3, PSC4, PSC5 and PSC6.
 
-Check for shorts.  Once happy, connect to power and check 3.3, 5v voltages again.  
+There are two sets of solder bridge pads above and below the LM2663 IC.  
 
-Then check at the top of the board the voltage between V+ and V-.  It should be in the region of 10v.  Check the volatages between 5v and GND here, and then -5v and GND.  The should be almost equal.  If not, somethings gone wrong and needs investigating.  See if the inverter feels hot, disconnect from power if so.
+The bridge pad above the LM2663 connects PIN6 (LV) to ground, if required.  The LM2663 datasheet specifies this can be tied to GND, or left floating.  It specifies that the device should operate in low voltage mode, and we don't need that here so leave it alone - it's there in case you are using an alternative device and it's required.
+
+The bridge pad (with 3 connections) below the LM2663 does require configuration.  This is connected to pin 1 (SD LM2663, FC on the LM2662).  On the LM2663 we are using, this pin needs to be tied to ground.  Grab the multimeter and figure out which pad you need to bridge (the other goes to +v!).  If you have an LM2262 or other chip, go read the datasheet to figure out what you need to do.
+
+Now, check for shorts.  Once happy, connect to power and check 3.3, 5v voltages again.  
+
+Then check at the top left of the board the voltage between V+ and V-.  It should be in the region of 10v.  Check the volatages between 5v and GND here, and then -5v and GND.  The should be almost equal.  If not, somethings gone wrong and needs investigating.  See if the inverter feels hot, disconnect from power if so.
 
 ### DAC
 
@@ -42,7 +48,11 @@ Assuming all has gone well, it's now time to solder the DAC IC.  You should have
 
 Next, do the two unmarked 0603 capacitors nearby, these are 0.1uF and used in filtering the power supply to the DAC.  Then, solder the two R22 resistors marked on the PCB - these go onto the USB D+ and D- signal lines.
 
-At this point, you should have soldered 6 components near the DAC.  Next up are the two to the right of it, again these are 0603 sized 0.1uF filtering caps.  Immediately above this goes yet another 0603 0.1uF cap.
+At this point, you should have soldered 6 components near the DAC.  Next up are the two to the right of it, again these are 0603 sized 0.1uF filtering caps.  Immediately above this goes yet another 0603 0.1uF cap, and above this one another 0.1uF connecting to the LM1117 copper plane.
+
+This should leave you with a space for one of the tantalum capacitors to the right of UC2.  These are polarized, so check the orientation.  To the right of that, yet another 0.1uF 0603 capacitor.  Then, in between the LM1117 and PSC2 marking goes another 10uF tantalum.
+
+Erroneously marked (10u) on the board is an 0805 space for a 1u capacitor (C9 on the PCM2706 Schematic).  Fit this part next. 
 
 Next, solder into place R2, just above the i2s/spdif connector, which needs soldering in next.  This is a 3P male header, which you will jumper to toggle between the two modes.  It doesn't make which mode you select, just make sure that one is selected as I'm unsure what happens if it's left floating.
 
@@ -68,11 +78,22 @@ Play something on the host, and slowly raise the volume.  Hopefully you will sta
 
 ### Bulding the CMoy
 
-This is where you'll need to build out the CMoy part of the board.  By now, hopefully you've got a good idea of how best to approach soldering the components - add everything in that is unpopulated (and small sized) until you reach the 8 LEDs at the top of the board, which we will complete last.  
+This is where you'll need to build out the CMoy part of the board.  By now, hopefully you've got a good idea of how best to approach soldering the components - add everything in that is unpopulated (and small sized) until you reach the 8 LEDs at the top of the board, which we will complete last.
 
-Start with C2L and C2R are  the film capacitors, and are 0805 sized.
+Start with C2L and C2R are  the film capacitors, and are 0805 sized.  These are in the signal path, hence why we need to use the Panasonic film caps here.  The schematic specifies 0.1uF here, though you could fit up to a 0.47uF cap in here.  Note this will affect (improve) the frequency response of the amplifier.
 
-Finally, add in the power caps, the 220uF capacitors near the power supply.
+The combination of C2 (0.1uF) and R2 (100k) forms a high-pass filter. This type of filter allows frequencies higher than its cutoff frequency to pass through with little to no attenuation, while it attenuates frequencies below the cutoff frequency.  For the values here, this cutoff frequency is around 16Hz.
+
+The python3 script in `calc_fc.py` can work this all out for you, for example:
+
+```
+python3 calc_fc.py 100K 0.47u
+The cutoff frequency is: 3.386275384933944 Hz
+```
+
+Before you deviate from the recommended settings, you should read the excellent article at https://tangentsoft.com/audio/input-cap.html and then decide what to do.  It also explains in more detail why we are using film capacitors.
+
+Finally, add in the power caps, the 220uF capacitors near the power supply. These are marked C1V+ and C1V-.
 
 #### Adding the buffers
 

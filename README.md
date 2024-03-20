@@ -48,11 +48,11 @@ Now we start to delve into the fun side of things, we've got an array of 8 LEDs 
 
 The other attiny is used as a digital volume controller - but if you want to use an old school analogue potentiometer, you can.  Just don't populate this part of the board.  But, read on for why you should...
 
-    *   Digital pots can be adjusted with precise increments, allowing for exact resistance settings - no more channel imbalances!
-    *   You can program the microcontroller to switch between different resistance profiles or settings, enabling one device to perform multiple functions or adapt to different operating conditions.  Instead of simply doing n+1 you could cycle through pre-defined settings!
-    * You can save the previous settings to the eeprom, or have a default 'low' setting so you don't blow your ears out
-    * If, like me, you are a little more deaf in one ear than the other, you can implement balancing
-    * If you don't like the response curve, change it!
-    * Unlike mechanical analog pots, digital pots and microcontrollers are not subject to physical wear from adjustments, leading to a longer lifespan and higher reliability
+*   Digital pots can be adjusted with precise increments, allowing for exact resistance settings - no more channel imbalances!
+*   You can program the microcontroller to switch between different resistance profiles or settings, enabling one device to perform multiple functions or adapt to different operating conditions.  Instead of simply doing n+1 you could cycle through pre-defined settings!
+* You can save the previous settings to the eeprom, or have a default 'low' setting so you don't blow your ears out
+* If, like me, you are a little more deaf in one ear than the other, you can implement balancing
+* If you don't like the response curve, change it!
+* Unlike mechanical analog pots, digital pots and microcontrollers are not subject to physical wear from adjustments, leading to a longer lifespan and higher reliability
 
 At this point if you're still reading, then perhaps you're interested in building one.  Head over to the [FAQ.md](FAQ.md) to see how to get started!

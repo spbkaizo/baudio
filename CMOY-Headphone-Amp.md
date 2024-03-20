@@ -17,9 +17,9 @@ Part selection matters.  The BOM has pre-selected values for components, and sho
 
 For now, you should know this - where the op-amp power supply is concerned, we should aim to use capacitors with a low ESR.  In a headphone amplifier power supply, low Equivalent Series Resistance (ESR) in capacitors is crucial for several reasons that directly impact performance and audio quality:
 
-    *   Improved Efficiency: Low ESR capacitors are more efficient at transferring energy. In the context of a power supply, this efficiency translates to better regulation and stability of the voltage supplied to the headphone amplifier. A stable power supply is vital for maintaining the fidelity of the audio signal, ensuring that the amplifier can produce a clear, distortion-free sound.
-    *   Enhanced Audio Quality: Power supply noise can significantly affect the quality of the audio output. Low ESR capacitors have better filtering capabilities, effectively smoothing out the ripple voltage in the power supply. This leads to a reduction in power supply noise and interference, which is crucial for achieving high-fidelity audio reproduction. By minimizing these unwanted noises, the amplifier can deliver a cleaner, more precise sound to the headphones.
-    *   Faster Response to Load Changes: Headphone amplifiers can experience rapid changes in load due to dynamic changes in the audio signal. Low ESR capacitors can respond more quickly to these changes, providing a stable power supply that can adapt without introducing distortion or lag in the audio output. This quick response is essential for preserving the dynamics and nuances of the music.
+*   Improved Efficiency: Low ESR capacitors are more efficient at transferring energy. In the context of a power supply, this efficiency translates to better regulation and stability of the voltage supplied to the headphone amplifier. A stable power supply is vital for maintaining the fidelity of the audio signal, ensuring that the amplifier can produce a clear, distortion-free sound.
+*   Enhanced Audio Quality: Power supply noise can significantly affect the quality of the audio output. Low ESR capacitors have better filtering capabilities, effectively smoothing out the ripple voltage in the power supply. This leads to a reduction in power supply noise and interference, which is crucial for achieving high-fidelity audio reproduction. By minimizing these unwanted noises, the amplifier can deliver a cleaner, more precise sound to the headphones.
+*   Faster Response to Load Changes: Headphone amplifiers can experience rapid changes in load due to dynamic changes in the audio signal. Low ESR capacitors can respond more quickly to these changes, providing a stable power supply that can adapt without introducing distortion or lag in the audio output. This quick response is essential for preserving the dynamics and nuances of the music.
 
 In summary, low ESR is a key factor in the design of a headphone amplifier power supply due to its influence on heat generation, efficiency, audio quality, and the power supply's response to load changes. By minimizing energy loss and improving the stability and cleanliness of the power delivered to the amplifier, low ESR capacitors contribute significantly to the overall performance and reliability of the system, leading to a better listening experience.
 
@@ -48,10 +48,10 @@ The tl;dr here is that you should not use MLCC capacitors anywhere in the signal
 
 Film capacitors are often considered superior for use in the signal path of audio circuits, including headphone amplifiers, over electrolytic or multilayer ceramic capacitors (MLCCs) for several key reasons that impact audio quality and performance:
 
-    *   Superior Frequency Characteristics: Film capacitors exhibit excellent frequency response characteristics. Unlike electrolytic capacitors, which can have significant inductance and resistance leading to poor performance at high frequencies, film capacitors maintain consistent capacitance over a wide frequency range. This characteristic ensures that the audio signal is preserved accurately across the audible spectrum, contributing to a more detailed and natural sound.
-    *   Lower Distortion: One of the most significant advantages of film capacitors is their ability to produce lower distortion than electrolytics or MLCCs. Film capacitors have very low dielectric absorption, meaning they can release stored energy more efficiently and with less distortion. This quality is essential in the signal path of an amplifier, where preserving the integrity of the audio signal is paramount to achieving high-fidelity reproduction.
-    *   Non-Polarized Nature: Film capacitors are non-polarized, making them more versatile in AC signal applications than polarized electrolytic capacitors. This feature allows for more straightforward implementation in the signal path, as there is no need to consider the orientation of the capacitor, reducing the risk of installation errors that could affect the signal integrity.
-    *   Low ESR and ESL: Film capacitors generally have low equivalent series resistance (ESR) and equivalent series inductance (ESL), which translates to better high-frequency performance and lower self-resonance issues compared to electrolytic and some MLCCs. This quality is particularly important in the signal path, where preserving the integrity of high-frequency signals is crucial for detailed and transparent audio reproduction.
+*   Superior Frequency Characteristics: Film capacitors exhibit excellent frequency response characteristics. Unlike electrolytic capacitors, which can have significant inductance and resistance leading to poor performance at high frequencies, film capacitors maintain consistent capacitance over a wide frequency range. This characteristic ensures that the audio signal is preserved accurately across the audible spectrum, contributing to a more detailed and natural sound.
+*   Lower Distortion: One of the most significant advantages of film capacitors is their ability to produce lower distortion than electrolytics or MLCCs. Film capacitors have very low dielectric absorption, meaning they can release stored energy more efficiently and with less distortion. This quality is essential in the signal path of an amplifier, where preserving the integrity of the audio signal is paramount to achieving high-fidelity reproduction.
+*   Non-Polarized Nature: Film capacitors are non-polarized, making them more versatile in AC signal applications than polarized electrolytic capacitors. This feature allows for more straightforward implementation in the signal path, as there is no need to consider the orientation of the capacitor, reducing the risk of installation errors that could affect the signal integrity.
+*   Low ESR and ESL: Film capacitors generally have low equivalent series resistance (ESR) and equivalent series inductance (ESL), which translates to better high-frequency performance and lower self-resonance issues compared to electrolytic and some MLCCs. This quality is particularly important in the signal path, where preserving the integrity of high-frequency signals is crucial for detailed and transparent audio reproduction.
 
 The BOM identifies these as being Panasonic ECPU1C104MA5, details are here:  https://industrial.panasonic.com/ww/products/pt/film-cap-electroequip/models/ECPU1C104MA5 
 
@@ -79,11 +79,19 @@ Here the bom specifies Bourns CMP0603AFX-1002ELF, again with a 1% tolerance.  Th
 
 R4 sets the gain of the device, in tandem with R3.
 
+You can see this by running `calc_gain.py` in the root directory of the project, for example:
+
+```
+python3 calc_gain.py 1K 2K  
+The gain of the CMoy amplifier is: 3.00
+```
+
 If you want to tinker with the gain, you should read this: https://tangentsoft.com/audio/cmoy//tweaks.html
 
 You may wish to lower the gain, if you are building the amp with the following conditions in mind:
-    *   Primarily to be used as a USB dac
-    *   You will be using the PCM5102A daugherboard.
+
+*   Primarily to be used as a USB dac
+*   You will be using the PCM5102A daugherboard.
 
 This is because the PCM5102 will output true high voltages for line level at 2.1v.
 
