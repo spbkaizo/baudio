@@ -1,6 +1,7 @@
 # BAUDI/O
 
 ![Render](images/render.png "Render")
+![PCB](images/pcb.svg "PCB")
 
 ## What is it?
 
