@@ -80,7 +80,7 @@ Play something on the host, and slowly raise the volume.  Hopefully you will sta
 
 This is where you'll need to build out the CMoy part of the board.  By now, hopefully you've got a good idea of how best to approach soldering the components - add everything in that is unpopulated (and small sized) until you reach the 8 LEDs at the top of the board, which we will complete last.
 
-Start with C2L and C2R are  the film capacitors, and are 0805 sized.  These are in the signal path, hence why we need to use the Panasonic film caps here.  The schematic specifies 0.1uF here, though you could fit up to a 0.47uF cap in here.  Note this will affect (improve) the frequency response of the amplifier.
+Start with C2L and C2R are  the film capacitors, and are 0805 sized.  These are in the signal path, hence why we need to use the Panasonic film caps here.  The schematic specifies 0.1uF here, though you could fit two piggbacked if you're careful, taking you 0.2uF....  Note this will affect (improve) the frequency response of the amplifier.
 
 The combination of C2 (0.1uF) and R2 (100k) forms a high-pass filter. This type of filter allows frequencies higher than its cutoff frequency to pass through with little to no attenuation, while it attenuates frequencies below the cutoff frequency.  For the values here, this cutoff frequency is around 16Hz.
 

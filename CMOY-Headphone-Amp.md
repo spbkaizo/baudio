@@ -65,7 +65,7 @@ For the Cmoy, we have these which we need to be concerned with.
 
 #### R2L, R2R
 
-Here the bom specifies Panasonic ERA6AEB104V, these again have a 0.1% tolerance.  The value according to the schematic is 100k, but you can change this (more on that later...).  They are 0805 sized.
+Here the bom specifies Panasonic ERA6AEB104V, these again have a 0.1% tolerance.  The value according to the schematic is 100k, but you can change this (more on that later...).  They are 0603 sized.
 
 #### R3L, R3R
 
