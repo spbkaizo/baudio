@@ -9,7 +9,30 @@
 
 ## Part selection
 
-Part selection matters.  The BOM has pre-selected values for components, and should be all you need, with the exception of the buffer op-amp, and the dip8 op-amp as these are a matter of personal choice (and experimentation!), and we will cover that later.
+Part selection matters.  The BOM has pre-selected values for components, and should be all you need.
+
+For the buffer op-amp, and also the first stage op-amp, I've selected the LM4562 - these are included in the BOM, and run at a few dollars each.  However, please feel free to order others - personally I've had great success in the past with some of the Analog Devices kit, the AD823, AD8066, AD8620 are some of my faves.
+
+### LM4562
+
+The LM4562 is a high-performance audio operational amplifier (op-amp) known for its outstanding audio performance and is often used in high-fidelity audio applications, including the first stage and buffer stage of headphone amplifiers. Here are the reasons why the LM4562 makes a good choice for these stages:
+
+*   Ultra-Low Distortion and Noise: One of the hallmark features of the LM4562 is its ultra-low distortion and noise characteristics. This is critical for the first stage of a headphone amplifier, where the integrity of the audio signal must be preserved. The LM4562 offers a Total Harmonic Distortion + Noise (THD+N) specification that is among the lowest in audio op-amps, ensuring that the signal is amplified without introducing significant distortion or noise
+
+*   High Slew Rate: The LM4562 boasts a high slew rate, which is the rate at which the output of the op-amp can change in response to a change in the input signal. A high slew rate is beneficial for audio applications because it enables the op-amp to handle rapid changes in the audio signal, preserving the nuances and transients in music. This makes it especially suitable for the first stage of a headphone amplifier, where the dynamic response is crucial.
+
+*   Wide Bandwidth: This op-amp offers a wide bandwidth, which ensures that it can accurately reproduce a broad range of audio frequencies without attenuation or phase distortion. A wide bandwidth is essential for both the first stage and buffer stage to ensure that the audio signal is faithfully reproduced across the audible spectrum.
+
+*   High Output Drive Capability: The LM4562 can drive a wide range of headphone impedances, from low to high, without significant loss of fidelity or power. This makes it an excellent choice for the buffer stage of a headphone amplifier, where it needs to provide sufficient power to drive the headphones directly.
+
+*   Excellent Sound Quality: Beyond the technical specifications, the LM4562 is often praised for its subjective sound quality. It is known to provide a clear, detailed, and neutral sound signature, which is highly desirable in high-fidelity audio applications. The first stage and buffer stage of a headphone amplifier significantly influence the overall sound quality, and the LM4562 ensures that the signal is processed with high fidelity.
+
+*   Flexibility and Compatibility: The LM4562 is designed to be compatible with a wide range of audio circuits and applications, offering designers flexibility in its implementation. Its dual-supply operation and the capability to operate at voltages as low as ±2.5V make it suitable for various audio applications, including portable headphone amplifiers.
+
+In summary, the LM4562's low distortion and noise, high slew rate, wide bandwidth, high output drive capability, and excellent sound quality make it an outstanding choice for both the first stage and buffer stage of a headphone amplifier. Its specifications and performance align well with the requirements for high-fidelity audio amplification, ensuring that the audio signal is amplified with minimal alteration to its original quality.
+
+[Datasheet for the LM4562](datasheet/lm4562.pdf)
+
 
 ### Capacitors
 
@@ -37,7 +60,7 @@ These are tantalum capacitors.  They primarily serve to improve the dynamic perf
 
 #### C2V+, C2V-
 
-These 0603 sized, with 0.1uF ratings.  
+These 0603 sized, with 0.1uF ratings.  They're pretty generic, indeed when you order the BOM the minimum order will be for 100 pieces (total cost, 75 cents!), so they're sprinkled liberally over the board.  You'll need a couple to go here.
 
 
 #### C2L, C2R
@@ -57,6 +80,8 @@ The BOM identifies these as being Panasonic ECPU1C104MA5, details are here:  htt
 
 Unless you have trouble sourcing these, stick with them for the best results.  
 
+Version 1.1 of the board has space for an 0805, which means we're pretty limited to what we can place here.  V1.2 will have a 1210 sized component placement, giving you much more choice.
+
 ### Resistors
 
 Mostly you only need to be overly concerned with resistors in the signal path, as thesse could result in drastically different volumes in the L/R output channels.  Here you want to be using 1% tolerances, though in the BOM I managed to find some with 0.1% tolerances, which frankly is a modern marvel.
@@ -65,7 +90,7 @@ For the Cmoy, we have these which we need to be concerned with.
 
 #### R2L, R2R
 
-Here the bom specifies Panasonic ERA6AEB104V, these again have a 0.1% tolerance.  The value according to the schematic is 100k, but you can change this (more on that later...).  They are 0603 sized.
+Here the bom specifies Panasonic ERA6AEB104V, these again have a 0.1% tolerance.  The value according to the schematic is 100k, but you can change this (more on that later...).  They are 0805 sized.
 
 #### R3L, R3R
 
@@ -103,6 +128,16 @@ The default gain in the schematic is 11, because 11 is louder than 10.  It also 
 
 If unsure, just go with the defaults, and if you find the gain is too high, you can always change it later.
 
+*Optional Changes*
+
+*   For a gain of 8, use 7K for R4
+*   For a gain of 6, use 5K for R4
+*   For a gain of 3, use 2K for R4
+*   For a gain of 4, use 3K for R4
+
+Obviously you can see the relationship, so just pick a value close to what you are after (e.g. 4.7K)
+
+
 #### R5L, R5R (Optional)
 
 Here's where it gets interesting.  You can jumper this part via the exposed pads near it, or use a 0 ohm resister here.  Alternatively you can leave it unpopulated, in which case you will want to build the amplifier buffer circuit.
@@ -114,6 +149,17 @@ There another reason it exists - when shorted this gives the amp the best contro
 #### BUFL, BUFR (Optional)
 
 These are the output 100 ohm resistors in the signal path.  I've identified the TR0603B100RP0525Z part, made by a company called 'Ever Ohms' (LCSC Part number C881023), as they are capable of 100mW and have a tolerance of 0.1%, which is absoluttely perfect to get balanced output.
+
+#### Other Resistors
+
+Some other resistors, that are in fact nothing to do with the build - but I have a handful of 1W or 2W resistors, in 16, 32, 100, 250, 600 ohms resistances.  When I'm doing testing or checking responses via a signal generator->AMP->Scope I use these as a dummy load, to see how the amp performs.
+
+Have a read below for how to perform one of the tests:
+
+https://tangentsoft.com/audio/pimeta2/bench/square.html
+
+FFT's are another area to dig into:  https://www.youtube.com/watch?v=u--OsHMGMYc
+
 
 ### Tinkering
 
@@ -182,11 +228,11 @@ In practice, for building a CMoy or any audio equipment, you choose high-quality
 
 In the context of adjusting the values of C2 and R2 in your CMoy amplifier, calculating Johnson-Nyquist noise becomes particularly relevant for a few reasons:
 
-    *   Optimizing Sound Quality: The primary goal in any audio equipment, including a CMoy amplifier, is to maximize sound quality. Johnson-Nyquist noise represents an unavoidable background hiss that can affect the clarity and purity of the audio signal. By understanding how different values of C2 and R2 influence the level of thermal noise, you can make informed decisions to minimize its impact, ensuring a clearer sound output.
-    *   Component Selection: Different values of R2 (the resistor in the RC high-pass filter or elsewhere in the amplifier) directly affect the level of thermal noise, with higher resistance values generally leading to higher noise levels. Knowing the noise implications helps in selecting resistor values that strike a balance between the desired filtering characteristics (or other circuit requirements) and acceptable noise levels.
-    *   Frequency Response and Noise: The choice of C2, especially in the context of an RC filter, impacts the amplifier's frequency response, altering how different frequencies are attenuated or amplified. While the primary focus might be on shaping the frequency response, these choices also indirectly affect noise characteristics. For instance, a wider bandwidth (which can be influenced by C2 and R2 values) may allow more noise to pass through the amplifier, as thermal noise is present across all frequencies but becomes more significant over a wider bandwidth.
-    *   Impedance Matching and Noise Consideration: In designing or tweaking a CMoy amplifier, the impedance of components like headphones and the input source must be considered for optimal performance. The values of C2 and R2 can affect the amplifier's input and output impedance, which in turn influences noise levels. Understanding the noise contributions helps in ensuring that the amplifier's design is compatible with the intended headphones, minimizing noise while maintaining the desired audio fidelity.
-    *   Practical Expectations and Design Trade-offs: Calculating Johnson-Nyquist noise can set realistic expectations for the amplifier's performance. It emphasizes that while striving for perfection in audio clarity, some level of background noise is inherent to electronic devices. This understanding guides the selection of R2 and C2 values within practical bounds, acknowledging the trade-offs between noise, frequency response, and other design criteria.
+*   Optimizing Sound Quality: The primary goal in any audio equipment, including a CMoy amplifier, is to maximize sound quality. Johnson-Nyquist noise represents an unavoidable background hiss that can affect the clarity and purity of the audio signal. By understanding how different values of C2 and R2 influence the level of thermal noise, you can make informed decisions to minimize its impact, ensuring a clearer sound output.
+*   Component Selection: Different values of R2 (the resistor in the RC high-pass filter or elsewhere in the amplifier) directly affect the level of thermal noise, with higher resistance values generally leading to higher noise levels. Knowing the noise implications helps in selecting resistor values that strike a balance between the desired filtering characteristics (or other circuit requirements) and acceptable noise levels.
+*   Frequency Response and Noise: The choice of C2, especially in the context of an RC filter, impacts the amplifier's frequency response, altering how different frequencies are attenuated or amplified. While the primary focus might be on shaping the frequency response, these choices also indirectly affect noise characteristics. For instance, a wider bandwidth (which can be influenced by C2 and R2 values) may allow more noise to pass through the amplifier, as thermal noise is present across all frequencies but becomes more significant over a wider bandwidth.
+*   Impedance Matching and Noise Consideration: In designing or tweaking a CMoy amplifier, the impedance of components like headphones and the input source must be considered for optimal performance. The values of C2 and R2 can affect the amplifier's input and output impedance, which in turn influences noise levels. Understanding the noise contributions helps in ensuring that the amplifier's design is compatible with the intended headphones, minimizing noise while maintaining the desired audio fidelity.
+*   Practical Expectations and Design Trade-offs: Calculating Johnson-Nyquist noise can set realistic expectations for the amplifier's performance. It emphasizes that while striving for perfection in audio clarity, some level of background noise is inherent to electronic devices. This understanding guides the selection of R2 and C2 values within practical bounds, acknowledging the trade-offs between noise, frequency response, and other design criteria.
 
 In summary, calculating Johnson-Nyquist noise when changing C2 and R2 in a CMoy amplifier isn't just about quantifying the background hiss; it's a crucial step in the holistic design process. It influences component selection, shapes the amplifier's sound quality, and helps in making informed design choices that balance ideal audio reproduction with the physical realities of electronic noise.
 
@@ -223,7 +269,7 @@ else:
 
 Let's work through an example, as it will lead us onto the next design consideration.  With C2 as 0.1uf and R2 as 100k (as in the schematic) the value is $5.74 \mu V_{\text{rms}}$.  This is before we head into the 'tweaking the gain' section, so if you use the schematic values as is, we would have a gain of 11.  As a result, we will expect to have $63.09 \mu V_{\text{rms}}$.
 
-If you were to swap these out for C2 1uF and R2 10k, then the value pre amp drops to $1.81 \mu V_{\text{rms}}$, and post amp to $19.95 \mu V_{\text{rms}}$... This however will introduce some new issues and challenges, with the pot.  iYou generally need to have a pot 10x the value of R2, so you're now likely to need to a 100K pot.  My advice would be to stick with the default values, and only change them after doing a lot more research on how all these components work together in tandom.  A brief overview of this is given below. 
+If you were to swap these out for C2 1uF and R2 10k, then the value pre amp drops to $1.81 \mu V_{\text{rms}}$, and post amp to $19.95 \mu V_{\text{rms}}$... This however will introduce some new issues and challenges, with the pot.  You generally need to have a pot 10x the value of R2, so you're now likely to need to a 100K pot.  My advice would be to stick with the default values, and only change them after doing a lot more research on how all these components work together in tandom.  A brief overview of this is given below. 
 
 #### Pot Selection
 
@@ -231,10 +277,10 @@ Adding a potentiometer in front of C2, which is part of the RC high-pass filter 
 
 In the design we have used a 10K, but you could change this to a 50k or a 100k.  If you decide you want to deviate, you need to be aware of the impacts.
 
-    *   Input Impedance and Signal Attenuation: The potentiometer, when used as a volume control, directly impacts the amplifier's input impedance. A higher-value potentiometer (e.g., 50kΩ or 100kΩ) increases the input impedance, which can be beneficial for compatibility with a wider range of source devices. However, it also means that the signal may undergo more attenuation before reaching the amplifier, potentially requiring adjustments to R2 to maintain the desired frequency response.
-    *   Interplay with R2: The effective resistance seen by C2 (and therefore the behavior of the high-pass filter) is influenced by the setting of the potentiometer and the value of R2. If R2 is chosen without considering the potentiometer, the filter's cutoff frequency may vary significantly with the potentiometer's position. For a stable and predictable cutoff frequency, the values of the potentiometer and R2 should be considered together. For example, a larger potentiometer value might necessitate adjusting R2 downward to maintain the desired cutoff frequency.
-    *   Noise Considerations: A potentiometer adds its own thermal noise to the circuit, although this contribution is generally small compared to other noise sources. However, the resistance value of the potentiometer can influence the overall noise level of the pre-amplifier stage. Higher resistance values (e.g., 100kΩ) could potentially increase the thermal noise floor. When designing the amplifier, this factor might lead to a preference for lower potentiometer values, provided they meet other design criteria.
-    *   Design Flexibility vs. Complexity: Using a higher-value potentiometer might offer more flexibility in adjusting the input impedance and the filter characteristics but at the cost of increased complexity in choosing R2.
+*   Input Impedance and Signal Attenuation: The potentiometer, when used as a volume control, directly impacts the amplifier's input impedance. A higher-value potentiometer (e.g., 50kΩ or 100kΩ) increases the input impedance, which can be beneficial for compatibility with a wider range of source devices. However, it also means that the signal may undergo more attenuation before reaching the amplifier, potentially requiring adjustments to R2 to maintain the desired frequency response.
+*   Interplay with R2: The effective resistance seen by C2 (and therefore the behavior of the high-pass filter) is influenced by the setting of the potentiometer and the value of R2. If R2 is chosen without considering the potentiometer, the filter's cutoff frequency may vary significantly with the potentiometer's position. For a stable and predictable cutoff frequency, the values of the potentiometer and R2 should be considered together. For example, a larger potentiometer value might necessitate adjusting R2 downward to maintain the desired cutoff frequency.
+*   Noise Considerations: A potentiometer adds its own thermal noise to the circuit, although this contribution is generally small compared to other noise sources. However, the resistance value of the potentiometer can influence the overall noise level of the pre-amplifier stage. Higher resistance values (e.g., 100kΩ) could potentially increase the thermal noise floor. When designing the amplifier, this factor might lead to a preference for lower potentiometer values, provided they meet other design criteria.
+*   Design Flexibility vs. Complexity: Using a higher-value potentiometer might offer more flexibility in adjusting the input impedance and the filter characteristics but at the cost of increased complexity in choosing R2.
 
 With our amp design, we can have multiple sources:
 
@@ -242,7 +288,15 @@ With our amp design, we can have multiple sources:
     *   Another DAC daisy chained to the PCM2706 output, then used as an input to the amp stage
     *   Anything else hooked up to the line in
 
-There's an interesting design choice here - do you even need a volume control?  If you're intending to use this board as a DAC with the PCM2706, this DAC has a built in hardware mixer, which means you can simply adjust the volume on the output from the host OS.  If you want to do this, there are 2 sets of bridging solder pads at the DAC output pins which will entirely bypass the potentiometer.  However, if you are intending to use the daughterboard PCM5102A DAC, then you need to be aware that this only produces line-level output - and in addition this is a true high level output at 2.1v.  Given we are building a Cmoy amplifier with a +5v/-5v arrangement, not only will it not cope with the gain of 11  * 2.1v, equally the output will be massive and almost certain to destroy something.  Of note is that the PCM2706's line level output is far lower, at around 0.55v.  If you do decide to bridge these pads, you will need to unbridge them later if you want to change the arrangement.
+There's an interesting design choice here - do you even need a volume control?  If you're intending to use this board as a DAC with the PCM2706, this DAC has a built in hardware mixer, which means you can simply adjust the volume on the output from the host OS.  
+
+If you want to do this, there are 2 sets of bridging solder pads at the DAC output pins which will entirely bypass the potentiometer.  
+
+However, if you are intending to use the daughterboard PCM5102A DAC, then you need to be aware that this only produces line-level output - and in addition this is a true high level output at 2.1v.  
+
+Given we are building a Cmoy amplifier with a +5v/-5v arrangement, not only will it not cope with the gain of 11  * 2.1v, equally the output will be massive and almost certain to destroy something.  
+
+Of note is that the PCM2706's line level output is far lower, at around 0.55v.  If you do decide to bridge these pads, you will need to unbridge them later if you want to change the arrangement.
 
 ##### Analog Pot
 
@@ -255,34 +309,4 @@ Another reason I've left it out, as these are easily found on AliExpress, if you
 Honestly, try and go with this.  It's way cooler, and gives you expansion options and an ability to change it's behaviour via code.  For example, you can change the code so it increses in steps 0-255 in 1, 2, 3, 5, 10 increments.  You can also potentially do some other stuff, as it's entirely code configurable.  Firmware for the attiny1614 is available in the directory for the volume control.
 
 The parts list BOM has the 10K pot version in it - I'd recommend just going with that, and you shouldn't go far wrong...
-
-#### OpAmp
-
-This deserves it's own page.
-
-#### Buffer OpAmp
-
-See above about OpAmp.
-
-Note this is a more permanent fixture on the board, being a smaller 8 pin package requiring soldering into place.
-
-You need to select an opamp here that is unity gain stable.  Unity gain means it has a gain of precisely 1.  Sometimes this might be referred to as a voltage follower.
-
-*Benefits of Adding a Unity Gain Buffer After a CMoy Amplifier*
-
-    *   Low Output Impedance: The buffer significantly lowers the output impedance seen by the headphones, which is crucial for maintaining consistent sound quality across headphones with different impedances. This low output impedance ensures better control over the headphone drivers, leading to improved damping and reduced distortion, especially in the bass frequencies.
-    *   Improved Drive Capability: Even though the CMoy amplifier itself can drive headphones, adding a buffer with a unity gain configuration allows for better current delivery to low-impedance headphones without straining the CMoy's op-amp. This setup can provide a cleaner power delivery to demanding loads.
-    *   Isolation: The buffer isolates the CMoy's output from the load. This isolation helps in preserving the original signal integrity and the amplifier's performance characteristics, ensuring that the CMoy circuit's output remains unaffected by variations in the headphone impedance.
-    *   Increased Stability: Buffers can enhance the overall stability of the audio circuit by providing a consistent load to the CMoy amplifier, thereby minimizing the risk of oscillations that might be induced by capacitive loads or long cable runs.
-
-
-You want to choose an opamp here that has low distortion, low noise, and a high slew rate to ensure that it does not degrade the audio signal. The op-amp should also be capable of driving the intended load directly.
-
-Some examples of your choices here are:
-
-    *   Texas Instruments OPA2134.  excellent audio performance, low distortion, and low noise.
-    *   Analog Devices AD823.  rail-to-rail output and low voltage operation, good audio quality
-    *   Texas Instruments LME49720.  ultra-low distortion and noise characteristics make it an excellent candidate for high-fidelity audio applications.  Note, I've not tried this myself as yet.
-    *   Analog Devices AD8620.  designed for high-performance audio applications.  It features very low noise and distortion.
-
 

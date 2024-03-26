@@ -58,7 +58,7 @@ Next, solder into place R2, just above the i2s/spdif connector, which needs sold
 
 At this point, the DAC should be operational - try plugging it into a USB power monitor if you have one, then into the PC and see if the device is detected.
 
-If it is detected, then unplug it, flip it over, and you can solder bridge the two connections marked DAC on the reverse of the board.  This will bypass the volume control which we will build later on. 
+Assuming the device is detected, you have a choice - you can carry on building out the board following the volume control instructions below, or if you actually want to test the sound then you can flip the board over and bridge the two DAC connections here.  Then skip to the 'Testing the DAC' section.  *Don't forget to remove the solder bridge before building the volume control*!
 
 ### Volume Control
 
@@ -68,21 +68,29 @@ Then, solder in C8 (another 0604 0.1uF capacitor).  Next, add RLED which is a 1K
 
 Leave the switches for now - we can add them once we've built out the CMoy Amplifier.
 
+*The volume control will be entirely useless until you have uploaded the firmware.  The digipots will initialise themselves to be at 50% at startup, i.e. the equivalent of a knob neing turned half way.
+
 ### Testing the DAC
 
-This is a little chicken and egg - solder in the male 3 pin headers for DAC, AMP, LINE-IN connections.  You might want to leave it alone which you build the CMoy, so you have more room to operate it, but if comfortable then connect jumper wires from the DAC outputs into the LINE-IN inputs.  Find a cheap pair of earbuds or headphones, and plug them into the line-in connector which you will need to solder into place.
+Solder in the male 3 pin headers for DAC, AMP, LINE-IN connections.  
 
-Once done, plug the board back in and reduce the volume to the minimum.  Hopefully you can't hear anything through the headphones, otherwise something is wrong somewhere.
+Connect jumper wires from the DAC outputs into the LINE-IN inputs.  
+
+Find a cheap pair of earbuds or headphones, and plug them into the line-in connector which you will need to solder into place.
+
+Once done, plug the board back in and reduce the hosts volume mixer to the minimum.  Hopefully you can't hear anything through the headphones, otherwise something is wrong somewhere.
 
 Play something on the host, and slowly raise the volume.  Hopefully you will start to hear music...
 
 ### Bulding the CMoy
 
-This is where you'll need to build out the CMoy part of the board.  By now, hopefully you've got a good idea of how best to approach soldering the components - add everything in that is unpopulated (and small sized) until you reach the 8 LEDs at the top of the board, which we will complete last.
+This is where you'll need to build out the CMoy part of the board.  
 
-Start with C2L and C2R are  the film capacitors, and are 0805 sized.  These are in the signal path, hence why we need to use the Panasonic film caps here.  The schematic specifies 0.1uF here, though you could fit two piggbacked if you're careful, taking you 0.2uF....  Note this will affect (improve) the frequency response of the amplifier.
+By now, hopefully you've got a good idea of how best to approach soldering the components - add everything in that is unpopulated (and small sized) until you reach the 8 LEDs at the top of the board, which we will complete last.
 
-The combination of C2 (0.1uF) and R2 (100k) forms a high-pass filter. This type of filter allows frequencies higher than its cutoff frequency to pass through with little to no attenuation, while it attenuates frequencies below the cutoff frequency.  For the values here, this cutoff frequency is around 16Hz.
+Start with C2L and C2R - these are the film capacitors, and are 0805 sized.  These are in the signal path, hence why we need to use the Panasonic film caps here.  The schematic specifies 0.1uF here, though you could fit two piggbacked if you're careful, taking you 0.2uF....  Note this will affect (improve) the frequency response of the amplifier.  *The next version of the board (1.2) will have space for a 1210 sized component, giving more choices to you.
+
+The combination of C2 (0.1uF) and R2 (100k) forms a high-pass filter. This type of filter allows frequencies higher than its cutoff frequency to pass through with little to no attenuation, while it attenuates frequencies below the cutoff frequency.  For the values above, this cutoff frequency is around 16Hz.  With C2 being a piggbacked 2x0.1uF, the cut off frequency is 7.96hz.  
 
 The python3 script in `calc_fc.py` can work this all out for you, for example:
 
@@ -92,6 +100,8 @@ The cutoff frequency is: 3.386275384933944 Hz
 ```
 
 Before you deviate from the recommended settings, you should read the excellent article at https://tangentsoft.com/audio/input-cap.html and then decide what to do.  It also explains in more detail why we are using film capacitors.
+
+There's a lot more details in (CMOY-Headphone-Amp.md)[CMOY-Headphone-Amp.md] about the rest of the components.  
 
 Finally, add in the power caps, the 220uF capacitors near the power supply. These are marked C1V+ and C1V-.
 
