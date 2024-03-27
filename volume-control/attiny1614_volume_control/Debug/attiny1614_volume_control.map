@@ -13,6 +13,7 @@ Allocating common symbols
 Common symbol       size              file
 
 volume              0x1               main.o
+lastStoredVolume    0x1               main.o
 
 Discarded input sections
 
@@ -188,7 +189,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x276
+.text           0x00000000      0x2c6
  *(.vectors)
  .vectors       0x00000000       0x7c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3/crtattiny1614.o
                 0x00000000                __vector_default
@@ -287,23 +288,23 @@ END GROUP
                 0x00000108       0x36 main.o
                 0x00000108                pot_write
  .text.__vector_3
-                0x0000013e       0xd2 main.o
+                0x0000013e       0xba main.o
                 0x0000013e                __vector_3
- .text.main     0x00000210       0x2a main.o
-                0x00000210                main
+ .text.main     0x000001f8       0x92 main.o
+                0x000001f8                main
  .text.avr-libc
-                0x0000023a       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
-                0x0000023a                eeprom_read_byte
-                0x00000242                eeprom_mapen
+                0x0000028a       0x10 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
+                0x0000028a                eeprom_read_byte
+                0x00000292                eeprom_mapen
  .text.avr-libc
-                0x0000024a       0x28 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
-                0x0000024a                eeprom_write_byte
-                0x0000024c                eeprom_write_r18
-                0x00000272                . = ALIGN (0x2)
+                0x0000029a       0x28 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
+                0x0000029a                eeprom_write_byte
+                0x0000029c                eeprom_write_r18
+                0x000002c2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000272        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
-                0x00000272                _exit
-                0x00000272                exit
+ .fini9         0x000002c2        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
+                0x000002c2                _exit
+                0x000002c2                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -322,16 +323,16 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000272        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
+ .fini0         0x000002c2        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avrxmega3\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000276                _etext = .
+                0x000002c6                _etext = .
 
 .rodata
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.r*)
 
-.data           0x00803800        0x0 load address 0x00000276
+.data           0x00803800        0x0 load address 0x000002c6
                 [!provide]                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -340,22 +341,26 @@ END GROUP
                 0x00803800                _edata = .
                 [!provide]                PROVIDE (__data_end, .)
 
-.bss            0x00803800        0x1
+.bss            0x00803800        0x6
                 0x00803800                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
+ .bss.writeDelayCounter
+                0x00803800        0x4 main.o
+                0x00803800                writeDelayCounter
  *(COMMON)
- COMMON         0x00803800        0x1 main.o
-                0x00803800                volume
-                0x00803801                PROVIDE (__bss_end, .)
-                0x00000276                __data_load_start = LOADADDR (.data)
-                0x00000276                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00803804        0x2 main.o
+                0x00803804                volume
+                0x00803805                lastStoredVolume
+                0x00803806                PROVIDE (__bss_end, .)
+                0x000002c6                __data_load_start = LOADADDR (.data)
+                0x000002c6                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00803801        0x0
+.noinit         0x00803806        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x00803801                _end = .
+                0x00803806                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x1
@@ -434,40 +439,40 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x2203
+.debug_info     0x00000000     0x2209
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x1ba2 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3/crtattiny1614.o
- .debug_info    0x00001ba2      0x523 main.o
- .debug_info    0x000020c5       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
- .debug_info    0x00002164       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
+ .debug_info    0x00001ba2      0x529 main.o
+ .debug_info    0x000020cb       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
+ .debug_info    0x0000216a       0x9f C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
 
-.debug_abbrev   0x00000000     0x1c8c
+.debug_abbrev   0x00000000     0x1c71
  *(.debug_abbrev)
  .debug_abbrev  0x00000000     0x1a26 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3/crtattiny1614.o
- .debug_abbrev  0x00001a26      0x23e main.o
- .debug_abbrev  0x00001c64       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
- .debug_abbrev  0x00001c78       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
+ .debug_abbrev  0x00001a26      0x223 main.o
+ .debug_abbrev  0x00001c49       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
+ .debug_abbrev  0x00001c5d       0x14 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
 
-.debug_line     0x00000000      0x5b1
+.debug_line     0x00000000      0x5d0
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x151 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3/crtattiny1614.o
- .debug_line    0x00000151      0x326 main.o
- .debug_line    0x00000477       0x79 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
- .debug_line    0x000004f0       0xc1 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
+ .debug_line    0x00000151      0x345 main.o
+ .debug_line    0x00000496       0x79 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eerd_byte.o)
+ .debug_line    0x0000050f       0xc1 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3\libattiny1614.a(eewr_byte.o)
 
 .debug_frame    0x00000000       0xc0
  *(.debug_frame)
  .debug_frame   0x00000000       0xc0 main.o
 
-.debug_str      0x00000000      0xecb
+.debug_str      0x00000000      0xeee
  *(.debug_str)
  .debug_str     0x00000000      0xb5b C:/Program Files (x86)/Atmel/Studio/7.0/Packs/Atmel/ATtiny_DFP/2.0.368/gcc/dev/attiny1614/avrxmega3/crtattiny1614.o
- .debug_str     0x00000b5b      0x370 main.o
-                                0x3a9 (size before relaxing)
+ .debug_str     0x00000b5b      0x393 main.o
+                                0x3cc (size before relaxing)
 
-.debug_loc      0x00000000      0x21d
+.debug_loc      0x00000000      0x265
  *(.debug_loc)
- .debug_loc     0x00000000      0x21d main.o
+ .debug_loc     0x00000000      0x265 main.o
 
 .debug_macinfo
  *(.debug_macinfo)
