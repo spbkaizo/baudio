@@ -1,0 +1,864 @@
+<!doctype html>
+<html data-n-head-ssr lang="en" data-n-head="%7B%22lang%22:%7B%22ssr%22:%22en%22%7D%7D">
+  <head >
+    <title>Datasheet - LCSC Electronics</title><meta data-n-head="ssr" charset="utf-8"><meta data-n-head="ssr" name="renderer" content="webkit"><meta data-n-head="ssr" data-hid="viewport" name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.3, maximum-scale=1, user-scalable=yes,viewport-fit=cover"><meta data-n-head="ssr" http-equiv="X-UA-Compatible" content="chrome=1, IE=Edge"><meta data-n-head="ssr" name="google" content="notranslate"><meta data-n-head="ssr" data-hid="keywords" name="keywords" content="LCSC, LCSC electronics, electronic components, electronic parts, electronic components distributor,electronic parts distributor, electronic parts suppliers, electronic components online shop, JLCPCB components, EasyEDA components"><meta data-n-head="ssr" data-hid="description" name="description" content="LCSC Electronics is a global components distributor with a wider selection in stock. Choose us for all your component needs - where quality, selection, and honest prices can be offered."><meta data-n-head="ssr" name="revised" content="4/1/2024, 2:09:40 PM"><link data-n-head="ssr" rel="shortcut icon" type="image/x-icon" href="/favicon.ico"><link data-n-head="ssr" rel="preconnect" href="https://assets.lcsc.com"><link data-n-head="ssr" rel="dns-prefetch" href="https://assets.lcsc.com"><link data-n-head="ssr" rel="canonical" href="https://www.lcsc.com/datasheet/lcsc_datasheet_2309071525_KNSCHA-189RV0015_C7471877.pdf"><style data-n-head="vuetify" type="text/css" id="vuetify-theme-stylesheet" nonce="undefined">.v-application a { color: #1166dd; }
+.v-application .primary {
+  background-color: #1166dd !important;
+  border-color: #1166dd !important;
+}
+.v-application .primary--text {
+  color: #1166dd !important;
+  caret-color: #1166dd !important;
+}
+.v-application .primary.lighten-5 {
+  background-color: #caeaff !important;
+  border-color: #caeaff !important;
+}
+.v-application .primary--text.text--lighten-5 {
+  color: #caeaff !important;
+  caret-color: #caeaff !important;
+}
+.v-application .primary.lighten-4 {
+  background-color: #abceff !important;
+  border-color: #abceff !important;
+}
+.v-application .primary--text.text--lighten-4 {
+  color: #abceff !important;
+  caret-color: #abceff !important;
+}
+.v-application .primary.lighten-3 {
+  background-color: #8cb3ff !important;
+  border-color: #8cb3ff !important;
+}
+.v-application .primary--text.text--lighten-3 {
+  color: #8cb3ff !important;
+  caret-color: #8cb3ff !important;
+}
+.v-application .primary.lighten-2 {
+  background-color: #6b98ff !important;
+  border-color: #6b98ff !important;
+}
+.v-application .primary--text.text--lighten-2 {
+  color: #6b98ff !important;
+  caret-color: #6b98ff !important;
+}
+.v-application .primary.lighten-1 {
+  background-color: #477ffa !important;
+  border-color: #477ffa !important;
+}
+.v-application .primary--text.text--lighten-1 {
+  color: #477ffa !important;
+  caret-color: #477ffa !important;
+}
+.v-application .primary.darken-1 {
+  background-color: #004fc1 !important;
+  border-color: #004fc1 !important;
+}
+.v-application .primary--text.text--darken-1 {
+  color: #004fc1 !important;
+  caret-color: #004fc1 !important;
+}
+.v-application .primary.darken-2 {
+  background-color: #0039a5 !important;
+  border-color: #0039a5 !important;
+}
+.v-application .primary--text.text--darken-2 {
+  color: #0039a5 !important;
+  caret-color: #0039a5 !important;
+}
+.v-application .primary.darken-3 {
+  background-color: #00258a !important;
+  border-color: #00258a !important;
+}
+.v-application .primary--text.text--darken-3 {
+  color: #00258a !important;
+  caret-color: #00258a !important;
+}
+.v-application .primary.darken-4 {
+  background-color: #001370 !important;
+  border-color: #001370 !important;
+}
+.v-application .primary--text.text--darken-4 {
+  color: #001370 !important;
+  caret-color: #001370 !important;
+}
+.v-application .secondary {
+  background-color: #666666 !important;
+  border-color: #666666 !important;
+}
+.v-application .secondary--text {
+  color: #666666 !important;
+  caret-color: #666666 !important;
+}
+.v-application .secondary.lighten-5 {
+  background-color: #ebebeb !important;
+  border-color: #ebebeb !important;
+}
+.v-application .secondary--text.text--lighten-5 {
+  color: #ebebeb !important;
+  caret-color: #ebebeb !important;
+}
+.v-application .secondary.lighten-4 {
+  background-color: #cfcfcf !important;
+  border-color: #cfcfcf !important;
+}
+.v-application .secondary--text.text--lighten-4 {
+  color: #cfcfcf !important;
+  caret-color: #cfcfcf !important;
+}
+.v-application .secondary.lighten-3 {
+  background-color: #b4b4b4 !important;
+  border-color: #b4b4b4 !important;
+}
+.v-application .secondary--text.text--lighten-3 {
+  color: #b4b4b4 !important;
+  caret-color: #b4b4b4 !important;
+}
+.v-application .secondary.lighten-2 {
+  background-color: #999999 !important;
+  border-color: #999999 !important;
+}
+.v-application .secondary--text.text--lighten-2 {
+  color: #999999 !important;
+  caret-color: #999999 !important;
+}
+.v-application .secondary.lighten-1 {
+  background-color: #7f7f7f !important;
+  border-color: #7f7f7f !important;
+}
+.v-application .secondary--text.text--lighten-1 {
+  color: #7f7f7f !important;
+  caret-color: #7f7f7f !important;
+}
+.v-application .secondary.darken-1 {
+  background-color: #4e4e4e !important;
+  border-color: #4e4e4e !important;
+}
+.v-application .secondary--text.text--darken-1 {
+  color: #4e4e4e !important;
+  caret-color: #4e4e4e !important;
+}
+.v-application .secondary.darken-2 {
+  background-color: #373737 !important;
+  border-color: #373737 !important;
+}
+.v-application .secondary--text.text--darken-2 {
+  color: #373737 !important;
+  caret-color: #373737 !important;
+}
+.v-application .secondary.darken-3 {
+  background-color: #222222 !important;
+  border-color: #222222 !important;
+}
+.v-application .secondary--text.text--darken-3 {
+  color: #222222 !important;
+  caret-color: #222222 !important;
+}
+.v-application .secondary.darken-4 {
+  background-color: #0c0c0c !important;
+  border-color: #0c0c0c !important;
+}
+.v-application .secondary--text.text--darken-4 {
+  color: #0c0c0c !important;
+  caret-color: #0c0c0c !important;
+}
+.v-application .accent {
+  background-color: #005caf !important;
+  border-color: #005caf !important;
+}
+.v-application .accent--text {
+  color: #005caf !important;
+  caret-color: #005caf !important;
+}
+.v-application .accent.lighten-5 {
+  background-color: #b5dfff !important;
+  border-color: #b5dfff !important;
+}
+.v-application .accent--text.text--lighten-5 {
+  color: #b5dfff !important;
+  caret-color: #b5dfff !important;
+}
+.v-application .accent.lighten-4 {
+  background-color: #97c3ff !important;
+  border-color: #97c3ff !important;
+}
+.v-application .accent--text.text--lighten-4 {
+  color: #97c3ff !important;
+  caret-color: #97c3ff !important;
+}
+.v-application .accent.lighten-3 {
+  background-color: #79a8ff !important;
+  border-color: #79a8ff !important;
+}
+.v-application .accent--text.text--lighten-3 {
+  color: #79a8ff !important;
+  caret-color: #79a8ff !important;
+}
+.v-application .accent.lighten-2 {
+  background-color: #5a8ee7 !important;
+  border-color: #5a8ee7 !important;
+}
+.v-application .accent--text.text--lighten-2 {
+  color: #5a8ee7 !important;
+  caret-color: #5a8ee7 !important;
+}
+.v-application .accent.lighten-1 {
+  background-color: #3974cb !important;
+  border-color: #3974cb !important;
+}
+.v-application .accent--text.text--lighten-1 {
+  color: #3974cb !important;
+  caret-color: #3974cb !important;
+}
+.v-application .accent.darken-1 {
+  background-color: #004594 !important;
+  border-color: #004594 !important;
+}
+.v-application .accent--text.text--darken-1 {
+  color: #004594 !important;
+  caret-color: #004594 !important;
+}
+.v-application .accent.darken-2 {
+  background-color: #002f7a !important;
+  border-color: #002f7a !important;
+}
+.v-application .accent--text.text--darken-2 {
+  color: #002f7a !important;
+  caret-color: #002f7a !important;
+}
+.v-application .accent.darken-3 {
+  background-color: #001c60 !important;
+  border-color: #001c60 !important;
+}
+.v-application .accent--text.text--darken-3 {
+  color: #001c60 !important;
+  caret-color: #001c60 !important;
+}
+.v-application .accent.darken-4 {
+  background-color: #000048 !important;
+  border-color: #000048 !important;
+}
+.v-application .accent--text.text--darken-4 {
+  color: #000048 !important;
+  caret-color: #000048 !important;
+}
+.v-application .error {
+  background-color: #ff5252 !important;
+  border-color: #ff5252 !important;
+}
+.v-application .error--text {
+  color: #ff5252 !important;
+  caret-color: #ff5252 !important;
+}
+.v-application .error.lighten-5 {
+  background-color: #ffe4d5 !important;
+  border-color: #ffe4d5 !important;
+}
+.v-application .error--text.text--lighten-5 {
+  color: #ffe4d5 !important;
+  caret-color: #ffe4d5 !important;
+}
+.v-application .error.lighten-4 {
+  background-color: #ffc6b9 !important;
+  border-color: #ffc6b9 !important;
+}
+.v-application .error--text.text--lighten-4 {
+  color: #ffc6b9 !important;
+  caret-color: #ffc6b9 !important;
+}
+.v-application .error.lighten-3 {
+  background-color: #ffa99e !important;
+  border-color: #ffa99e !important;
+}
+.v-application .error--text.text--lighten-3 {
+  color: #ffa99e !important;
+  caret-color: #ffa99e !important;
+}
+.v-application .error.lighten-2 {
+  background-color: #ff8c84 !important;
+  border-color: #ff8c84 !important;
+}
+.v-application .error--text.text--lighten-2 {
+  color: #ff8c84 !important;
+  caret-color: #ff8c84 !important;
+}
+.v-application .error.lighten-1 {
+  background-color: #ff6f6a !important;
+  border-color: #ff6f6a !important;
+}
+.v-application .error--text.text--lighten-1 {
+  color: #ff6f6a !important;
+  caret-color: #ff6f6a !important;
+}
+.v-application .error.darken-1 {
+  background-color: #df323b !important;
+  border-color: #df323b !important;
+}
+.v-application .error--text.text--darken-1 {
+  color: #df323b !important;
+  caret-color: #df323b !important;
+}
+.v-application .error.darken-2 {
+  background-color: #bf0025 !important;
+  border-color: #bf0025 !important;
+}
+.v-application .error--text.text--darken-2 {
+  color: #bf0025 !important;
+  caret-color: #bf0025 !important;
+}
+.v-application .error.darken-3 {
+  background-color: #9f0010 !important;
+  border-color: #9f0010 !important;
+}
+.v-application .error--text.text--darken-3 {
+  color: #9f0010 !important;
+  caret-color: #9f0010 !important;
+}
+.v-application .error.darken-4 {
+  background-color: #800000 !important;
+  border-color: #800000 !important;
+}
+.v-application .error--text.text--darken-4 {
+  color: #800000 !important;
+  caret-color: #800000 !important;
+}
+.v-application .info {
+  background-color: #2196f3 !important;
+  border-color: #2196f3 !important;
+}
+.v-application .info--text {
+  color: #2196f3 !important;
+  caret-color: #2196f3 !important;
+}
+.v-application .info.lighten-5 {
+  background-color: #d4ffff !important;
+  border-color: #d4ffff !important;
+}
+.v-application .info--text.text--lighten-5 {
+  color: #d4ffff !important;
+  caret-color: #d4ffff !important;
+}
+.v-application .info.lighten-4 {
+  background-color: #b5ffff !important;
+  border-color: #b5ffff !important;
+}
+.v-application .info--text.text--lighten-4 {
+  color: #b5ffff !important;
+  caret-color: #b5ffff !important;
+}
+.v-application .info.lighten-3 {
+  background-color: #95e8ff !important;
+  border-color: #95e8ff !important;
+}
+.v-application .info--text.text--lighten-3 {
+  color: #95e8ff !important;
+  caret-color: #95e8ff !important;
+}
+.v-application .info.lighten-2 {
+  background-color: #75ccff !important;
+  border-color: #75ccff !important;
+}
+.v-application .info--text.text--lighten-2 {
+  color: #75ccff !important;
+  caret-color: #75ccff !important;
+}
+.v-application .info.lighten-1 {
+  background-color: #51b0ff !important;
+  border-color: #51b0ff !important;
+}
+.v-application .info--text.text--lighten-1 {
+  color: #51b0ff !important;
+  caret-color: #51b0ff !important;
+}
+.v-application .info.darken-1 {
+  background-color: #007cd6 !important;
+  border-color: #007cd6 !important;
+}
+.v-application .info--text.text--darken-1 {
+  color: #007cd6 !important;
+  caret-color: #007cd6 !important;
+}
+.v-application .info.darken-2 {
+  background-color: #0064ba !important;
+  border-color: #0064ba !important;
+}
+.v-application .info--text.text--darken-2 {
+  color: #0064ba !important;
+  caret-color: #0064ba !important;
+}
+.v-application .info.darken-3 {
+  background-color: #004d9f !important;
+  border-color: #004d9f !important;
+}
+.v-application .info--text.text--darken-3 {
+  color: #004d9f !important;
+  caret-color: #004d9f !important;
+}
+.v-application .info.darken-4 {
+  background-color: #003784 !important;
+  border-color: #003784 !important;
+}
+.v-application .info--text.text--darken-4 {
+  color: #003784 !important;
+  caret-color: #003784 !important;
+}
+.v-application .success {
+  background-color: #4caf50 !important;
+  border-color: #4caf50 !important;
+}
+.v-application .success--text {
+  color: #4caf50 !important;
+  caret-color: #4caf50 !important;
+}
+.v-application .success.lighten-5 {
+  background-color: #dcffd6 !important;
+  border-color: #dcffd6 !important;
+}
+.v-application .success--text.text--lighten-5 {
+  color: #dcffd6 !important;
+  caret-color: #dcffd6 !important;
+}
+.v-application .success.lighten-4 {
+  background-color: #beffba !important;
+  border-color: #beffba !important;
+}
+.v-application .success--text.text--lighten-4 {
+  color: #beffba !important;
+  caret-color: #beffba !important;
+}
+.v-application .success.lighten-3 {
+  background-color: #a2ff9e !important;
+  border-color: #a2ff9e !important;
+}
+.v-application .success--text.text--lighten-3 {
+  color: #a2ff9e !important;
+  caret-color: #a2ff9e !important;
+}
+.v-application .success.lighten-2 {
+  background-color: #85e783 !important;
+  border-color: #85e783 !important;
+}
+.v-application .success--text.text--lighten-2 {
+  color: #85e783 !important;
+  caret-color: #85e783 !important;
+}
+.v-application .success.lighten-1 {
+  background-color: #69cb69 !important;
+  border-color: #69cb69 !important;
+}
+.v-application .success--text.text--lighten-1 {
+  color: #69cb69 !important;
+  caret-color: #69cb69 !important;
+}
+.v-application .success.darken-1 {
+  background-color: #2d9437 !important;
+  border-color: #2d9437 !important;
+}
+.v-application .success--text.text--darken-1 {
+  color: #2d9437 !important;
+  caret-color: #2d9437 !important;
+}
+.v-application .success.darken-2 {
+  background-color: #00791e !important;
+  border-color: #00791e !important;
+}
+.v-application .success--text.text--darken-2 {
+  color: #00791e !important;
+  caret-color: #00791e !important;
+}
+.v-application .success.darken-3 {
+  background-color: #006000 !important;
+  border-color: #006000 !important;
+}
+.v-application .success--text.text--darken-3 {
+  color: #006000 !important;
+  caret-color: #006000 !important;
+}
+.v-application .success.darken-4 {
+  background-color: #004700 !important;
+  border-color: #004700 !important;
+}
+.v-application .success--text.text--darken-4 {
+  color: #004700 !important;
+  caret-color: #004700 !important;
+}
+.v-application .warning {
+  background-color: #fb8c00 !important;
+  border-color: #fb8c00 !important;
+}
+.v-application .warning--text {
+  color: #fb8c00 !important;
+  caret-color: #fb8c00 !important;
+}
+.v-application .warning.lighten-5 {
+  background-color: #ffff9e !important;
+  border-color: #ffff9e !important;
+}
+.v-application .warning--text.text--lighten-5 {
+  color: #ffff9e !important;
+  caret-color: #ffff9e !important;
+}
+.v-application .warning.lighten-4 {
+  background-color: #fffb82 !important;
+  border-color: #fffb82 !important;
+}
+.v-application .warning--text.text--lighten-4 {
+  color: #fffb82 !important;
+  caret-color: #fffb82 !important;
+}
+.v-application .warning.lighten-3 {
+  background-color: #ffdf67 !important;
+  border-color: #ffdf67 !important;
+}
+.v-application .warning--text.text--lighten-3 {
+  color: #ffdf67 !important;
+  caret-color: #ffdf67 !important;
+}
+.v-application .warning.lighten-2 {
+  background-color: #ffc24b !important;
+  border-color: #ffc24b !important;
+}
+.v-application .warning--text.text--lighten-2 {
+  color: #ffc24b !important;
+  caret-color: #ffc24b !important;
+}
+.v-application .warning.lighten-1 {
+  background-color: #ffa72d !important;
+  border-color: #ffa72d !important;
+}
+.v-application .warning--text.text--lighten-1 {
+  color: #ffa72d !important;
+  caret-color: #ffa72d !important;
+}
+.v-application .warning.darken-1 {
+  background-color: #db7200 !important;
+  border-color: #db7200 !important;
+}
+.v-application .warning--text.text--darken-1 {
+  color: #db7200 !important;
+  caret-color: #db7200 !important;
+}
+.v-application .warning.darken-2 {
+  background-color: #bb5900 !important;
+  border-color: #bb5900 !important;
+}
+.v-application .warning--text.text--darken-2 {
+  color: #bb5900 !important;
+  caret-color: #bb5900 !important;
+}
+.v-application .warning.darken-3 {
+  background-color: #9d4000 !important;
+  border-color: #9d4000 !important;
+}
+.v-application .warning--text.text--darken-3 {
+  color: #9d4000 !important;
+  caret-color: #9d4000 !important;
+}
+.v-application .warning.darken-4 {
+  background-color: #802700 !important;
+  border-color: #802700 !important;
+}
+.v-application .warning--text.text--darken-4 {
+  color: #802700 !important;
+  caret-color: #802700 !important;
+}
+.v-application .major {
+  background-color: #333333 !important;
+  border-color: #333333 !important;
+}
+.v-application .major--text {
+  color: #333333 !important;
+  caret-color: #333333 !important;
+}
+.v-application .major.lighten-5 {
+  background-color: #aeaeae !important;
+  border-color: #aeaeae !important;
+}
+.v-application .major--text.text--lighten-5 {
+  color: #aeaeae !important;
+  caret-color: #aeaeae !important;
+}
+.v-application .major.lighten-4 {
+  background-color: #949494 !important;
+  border-color: #949494 !important;
+}
+.v-application .major--text.text--lighten-4 {
+  color: #949494 !important;
+  caret-color: #949494 !important;
+}
+.v-application .major.lighten-3 {
+  background-color: #7a7a7a !important;
+  border-color: #7a7a7a !important;
+}
+.v-application .major--text.text--lighten-3 {
+  color: #7a7a7a !important;
+  caret-color: #7a7a7a !important;
+}
+.v-application .major.lighten-2 {
+  background-color: #616161 !important;
+  border-color: #616161 !important;
+}
+.v-application .major--text.text--lighten-2 {
+  color: #616161 !important;
+  caret-color: #616161 !important;
+}
+.v-application .major.lighten-1 {
+  background-color: #4a4a4a !important;
+  border-color: #4a4a4a !important;
+}
+.v-application .major--text.text--lighten-1 {
+  color: #4a4a4a !important;
+  caret-color: #4a4a4a !important;
+}
+.v-application .major.darken-1 {
+  background-color: #1e1e1e !important;
+  border-color: #1e1e1e !important;
+}
+.v-application .major--text.text--darken-1 {
+  color: #1e1e1e !important;
+  caret-color: #1e1e1e !important;
+}
+.v-application .major.darken-2 {
+  background-color: #050505 !important;
+  border-color: #050505 !important;
+}
+.v-application .major--text.text--darken-2 {
+  color: #050505 !important;
+  caret-color: #050505 !important;
+}
+.v-application .major.darken-3 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .major--text.text--darken-3 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .major.darken-4 {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+}
+.v-application .major--text.text--darken-4 {
+  color: #000000 !important;
+  caret-color: #000000 !important;
+}
+.v-application .lighter {
+  background-color: #999999 !important;
+  border-color: #999999 !important;
+}
+.v-application .lighter--text {
+  color: #999999 !important;
+  caret-color: #999999 !important;
+}
+.v-application .lighter.lighten-5 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .lighter--text.text--lighten-5 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .lighter.lighten-4 {
+  background-color: #ffffff !important;
+  border-color: #ffffff !important;
+}
+.v-application .lighter--text.text--lighten-4 {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+.v-application .lighter.lighten-3 {
+  background-color: #ebeceb !important;
+  border-color: #ebeceb !important;
+}
+.v-application .lighter--text.text--lighten-3 {
+  color: #ebeceb !important;
+  caret-color: #ebeceb !important;
+}
+.v-application .lighter.lighten-2 {
+  background-color: #cfcfcf !important;
+  border-color: #cfcfcf !important;
+}
+.v-application .lighter--text.text--lighten-2 {
+  color: #cfcfcf !important;
+  caret-color: #cfcfcf !important;
+}
+.v-application .lighter.lighten-1 {
+  background-color: #b4b4b4 !important;
+  border-color: #b4b4b4 !important;
+}
+.v-application .lighter--text.text--lighten-1 {
+  color: #b4b4b4 !important;
+  caret-color: #b4b4b4 !important;
+}
+.v-application .lighter.darken-1 {
+  background-color: #7f7f7f !important;
+  border-color: #7f7f7f !important;
+}
+.v-application .lighter--text.text--darken-1 {
+  color: #7f7f7f !important;
+  caret-color: #7f7f7f !important;
+}
+.v-application .lighter.darken-2 {
+  background-color: #666666 !important;
+  border-color: #666666 !important;
+}
+.v-application .lighter--text.text--darken-2 {
+  color: #666666 !important;
+  caret-color: #666666 !important;
+}
+.v-application .lighter.darken-3 {
+  background-color: #4e4e4e !important;
+  border-color: #4e4e4e !important;
+}
+.v-application .lighter--text.text--darken-3 {
+  color: #4e4e4e !important;
+  caret-color: #4e4e4e !important;
+}
+.v-application .lighter.darken-4 {
+  background-color: #373737 !important;
+  border-color: #373737 !important;
+}
+.v-application .lighter--text.text--darken-4 {
+  color: #373737 !important;
+  caret-color: #373737 !important;
+}
+.v-application .price {
+  background-color: #e11c25 !important;
+  border-color: #e11c25 !important;
+}
+.v-application .price--text {
+  color: #e11c25 !important;
+  caret-color: #e11c25 !important;
+}
+.v-application .price.lighten-5 {
+  background-color: #ffbba1 !important;
+  border-color: #ffbba1 !important;
+}
+.v-application .price--text.text--lighten-5 {
+  color: #ffbba1 !important;
+  caret-color: #ffbba1 !important;
+}
+.v-application .price.lighten-4 {
+  background-color: #ff9e86 !important;
+  border-color: #ff9e86 !important;
+}
+.v-application .price--text.text--lighten-4 {
+  color: #ff9e86 !important;
+  caret-color: #ff9e86 !important;
+}
+.v-application .price.lighten-3 {
+  background-color: #ff806d !important;
+  border-color: #ff806d !important;
+}
+.v-application .price--text.text--lighten-3 {
+  color: #ff806d !important;
+  caret-color: #ff806d !important;
+}
+.v-application .price.lighten-2 {
+  background-color: #ff6354 !important;
+  border-color: #ff6354 !important;
+}
+.v-application .price--text.text--lighten-2 {
+  color: #ff6354 !important;
+  caret-color: #ff6354 !important;
+}
+.v-application .price.lighten-1 {
+  background-color: #ff433c !important;
+  border-color: #ff433c !important;
+}
+.v-application .price--text.text--lighten-1 {
+  color: #ff433c !important;
+  caret-color: #ff433c !important;
+}
+.v-application .price.darken-1 {
+  background-color: #c0000e !important;
+  border-color: #c0000e !important;
+}
+.v-application .price--text.text--darken-1 {
+  color: #c0000e !important;
+  caret-color: #c0000e !important;
+}
+.v-application .price.darken-2 {
+  background-color: #a00000 !important;
+  border-color: #a00000 !important;
+}
+.v-application .price--text.text--darken-2 {
+  color: #a00000 !important;
+  caret-color: #a00000 !important;
+}
+.v-application .price.darken-3 {
+  background-color: #810000 !important;
+  border-color: #810000 !important;
+}
+.v-application .price--text.text--darken-3 {
+  color: #810000 !important;
+  caret-color: #810000 !important;
+}
+.v-application .price.darken-4 {
+  background-color: #650000 !important;
+  border-color: #650000 !important;
+}
+.v-application .price--text.text--darken-4 {
+  color: #650000 !important;
+  caret-color: #650000 !important;
+}</style><script data-n-head="ssr" src="/iconfontV2/iconfont.js"></script><script data-n-head="ssr" src="https://www.googletagmanager.com/gtag/js?id=UA-98399433-1" async></script><link rel="preload" href="/_nuxt/46da8f2.js" as="script"><link rel="preload" href="/_nuxt/320f9f5.js" as="script"><link rel="preload" href="/_nuxt/vendors/app.198058e.css" as="style"><link rel="preload" href="/_nuxt/40de50d.js" as="script"><link rel="preload" href="/_nuxt/app.fffb2a4.css" as="style"><link rel="preload" href="/_nuxt/d41d626.js" as="script"><link rel="preload" href="/_nuxt/pages/datasheet/_id.6e8900b.css" as="style"><link rel="preload" href="/_nuxt/85084b3.js" as="script"><link rel="preload" href="/_nuxt/1fc3a58.js" as="script"><link rel="preload" href="/_nuxt/pages/datasheet/_id/pages/product-detail/_id.7ef4236.css" as="style"><link rel="preload" href="/_nuxt/39b2841.js" as="script"><link rel="stylesheet" href="/_nuxt/vendors/app.198058e.css"><link rel="stylesheet" href="/_nuxt/app.fffb2a4.css"><link rel="stylesheet" href="/_nuxt/pages/datasheet/_id.6e8900b.css"><link rel="stylesheet" href="/_nuxt/pages/datasheet/_id/pages/product-detail/_id.7ef4236.css">
+  </head>
+  <body >
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div data-app="true" id="app" class="v-application v-application--is-ltr theme--light"><div class="v-application--wrap"><div class="datasheetWrap d-flex" data-v-2eff23ae><iframe src="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2309071525_KNSCHA-189RV0015_C7471877.pdf" frameborder="0" class="flex-auto" data-v-2eff23ae></iframe> <div class="datasheetRight flex-none px-10 py-7" data-v-2eff23ae><div style="display:;" data-v-2eff23ae><div class="d-flex justify-space-between" data-v-2eff23ae><a href="/" class="nuxt-link-active" data-v-2eff23ae><img src="/images/logo.png" alt="www.lcsc.com" width="189px" height="36.5px" data-v-2eff23ae></a> <div class="d-flex flex-column align-center" data-v-2eff23ae><a href="/cart" rel="nofollow"><span id="cart-badge" class="v-badge v-badge--overlap theme--light"><button type="button" aria-label="cart" class="v-btn v-btn--flat v-btn--icon v-btn--round theme--light v-size--default secondary--text" style="height:36px;width:36px;"><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate ic ic-weibiaoti-- major--text material-icons theme--light" style="font-size:36px;"></i></span></button><span class="v-badge__wrapper"><span aria-atomic="true" aria-label="Badge" aria-live="polite" role="status" class="v-badge__badge red" style="bottom:calc(100% - 12px);left:calc(100% - 8px);right:auto;top:auto;display:none;"></span></span></span></a> <!----> <div class="cartFlyBallWrap" data-v-7a7d9945></div></div></div> <div class="d-flex mt-3" data-v-2eff23ae><div class="flex-none pt-1" data-v-2eff23ae><div class="relative" data-v-2eff23ae><div class="v-image v-responsive theme--light" style="height:80px;width:80px;" data-v-2eff23ae><div class="v-image__image v-image__image--preload v-image__image--contain" style="background-image:url(&quot;/_nuxt/img/no_goods_pic.5fb993b.png&quot;);background-position:center center;"></div><div class="v-responsive__content"></div></div> <div class="product-tag" data-v-2eff23ae><div class="v-image v-responsive theme--light" style="min-width:40%;max-width:70%;width:40%;" data-v-2eff23ae><div class="v-image__image v-image__image--preload v-image__image--cover" style="background-image:;background-position:center center;"></div><div class="v-responsive__content"><div style="white-space:nowrap;color:#fff;position:absolute;left:0;right:0;top:0;bottom:0;transform:scale(0.85);" data-v-2eff23ae><span style="font-size:12px;height:100%;display:flex;justify-content:center;align-items:center;transform:scale(0.85);" data-v-2eff23ae>5% OFF</span></div></div></div></div></div></div> <div class="flex-auto pl-4 fz-14" data-v-2eff23ae><div class="font-weight-bold fz-16" data-v-2eff23ae>
+              KNSCHA 189RV0015
+            </div> <div class="d-flex infoItem mt-1" data-v-2eff23ae><div class="font-weight-bold flex-none" data-v-2eff23ae>Manufacturer</div> <div data-v-2eff23ae><a href="/brand-detail/12108.html" target="_blank" data-v-2eff23ae>
+                  KNSCHA
+                </a></div></div> <div class="d-flex infoItem" data-v-2eff23ae><div class="font-weight-bold flex-none" data-v-2eff23ae>Package</div> <div class="secondary--text" data-v-2eff23ae>SMD,D6.3xL7.7mm</div></div> <div class="d-flex infoItem" data-v-2eff23ae><div class="font-weight-bold flex-none" data-v-2eff23ae>Description</div> <div class="secondary--text" data-v-2eff23ae>
+                680uF 6.3V 600mA@100KHz 160mΩ@100KHz ±20% SMD,D6.3xL7.7mm  Aluminum Electrolytic Capacitors - SMD ROHS
+              </div></div></div></div> <div class="mt-5" data-v-2eff23ae><div class="font-weight-bold" data-v-2eff23ae>
+              Pricing (USD)
+            </div> <div class="mt-1 fz-14" data-v-2eff23ae><div class="secondary--text" data-v-2eff23ae><span data-v-2eff23ae>Sales Unit: Piece</span> <span class="ml-4" data-v-2eff23ae>
+                  Full Reel:
+                  1000
+                </span></div> <table class="priceTable mt-2 text-left" data-v-2eff23ae><thead data-v-2eff23ae><tr data-v-2eff23ae><th data-v-2eff23ae>Qty.</th> <th data-v-2eff23ae>Unit Price</th> <th data-v-2eff23ae>Ext. Price</th></tr></thead> <tbody class="secondary--text" data-v-2eff23ae><tr data-v-2eff23ae><td class="primary--text font-weight-bold ahover pointer" data-v-2eff23ae>
+                      5+
+                    </td> <td data-v-2eff23ae><span class="price--text mr-2" data-v-2eff23ae>
+                        $ 0.0648
+                      </span> <span class="text-decoration-line-through" data-v-2eff23ae>
+                        $0.0682
+                      </span></td> <td data-v-2eff23ae>$ 0.32</td></tr><tr data-v-2eff23ae><td class="primary--text font-weight-bold ahover pointer" data-v-2eff23ae>
+                      50+
+                    </td> <td data-v-2eff23ae><span class="price--text mr-2" data-v-2eff23ae>
+                        $ 0.0524
+                      </span> <span class="text-decoration-line-through" data-v-2eff23ae>
+                        $0.0551
+                      </span></td> <td data-v-2eff23ae>$ 2.62</td></tr><tr data-v-2eff23ae><td class="primary--text font-weight-bold ahover pointer" data-v-2eff23ae>
+                      150+
+                    </td> <td data-v-2eff23ae><span class="price--text mr-2" data-v-2eff23ae>
+                        $ 0.0462
+                      </span> <span class="text-decoration-line-through" data-v-2eff23ae>
+                        $0.0486
+                      </span></td> <td data-v-2eff23ae>$ 6.93</td></tr><tr data-v-2eff23ae><td class="primary--text font-weight-bold ahover pointer" data-v-2eff23ae>
+                      1000+
+                    </td> <td data-v-2eff23ae><span class="price--text mr-2" data-v-2eff23ae>
+                        $ 0.0415
+                      </span> <span class="text-decoration-line-through" data-v-2eff23ae>
+                        $0.0436
+                      </span></td> <td data-v-2eff23ae>$ 41.50</td></tr><tr data-v-2eff23ae><td class="primary--text font-weight-bold ahover pointer" data-v-2eff23ae>
+                      2000+
+                    </td> <td data-v-2eff23ae><span class="price--text mr-2" data-v-2eff23ae>
+                        $ 0.0378
+                      </span> <span class="text-decoration-line-through" data-v-2eff23ae>
+                        $0.0397
+                      </span></td> <td data-v-2eff23ae>$ 75.60</td></tr><tr data-v-2eff23ae><td class="primary--text font-weight-bold ahover pointer" data-v-2eff23ae>
+                      5000+
+                    </td> <td data-v-2eff23ae><span class="price--text mr-2" data-v-2eff23ae>
+                        $ 0.0359
+                      </span> <span class="text-decoration-line-through" data-v-2eff23ae>
+                        $0.0377
+                      </span></td> <td data-v-2eff23ae>$ 179.50</td></tr></tbody></table></div></div> <div class="d-flex align-center justify-space-between mt-3 pb-1" data-v-2eff23ae><div class="fz-16 font-weight-bold" data-v-2eff23ae>
+              In Stock: 23045
+            </div> <div data-v-2eff23ae><button type="button" class="pr-0 v-btn v-btn--flat v-btn--text theme--light v-size--default primary--text" data-v-2eff23ae><span class="v-btn__content"><i aria-hidden="true" class="v-icon notranslate mr-1 mdi mdi-bell-outline theme--light" style="font-size:18px;" data-v-2eff23ae></i> <span data-v-2eff23ae>Stock Notification</span> <span class="v-tooltip v-tooltip--bottom" data-v-2eff23ae><!----><i aria-hidden="true" aria-haspopup="true" aria-expanded="false" class="v-icon notranslate ml-1 mdi mdi-help-circle-outline theme--light primary--text" style="font-size:18px;" data-v-2eff23ae></i></span></span></button></div></div> <div class="add-to-cart" data-v-034e6588 data-v-2eff23ae><div class="fz-14 mb-3" data-v-034e6588><span data-v-034e6588>Minimum : 5</span> <span class="ml-10" data-v-034e6588>Multiples : 5</span></div> <div data-v-034e6588><div class="v-input quantityInput-v2 v-text-field-large v-text-field-input-center margin-center v-input--hide-details v-input--is-label-active v-input--is-dirty v-input--dense theme--light v-text-field v-text-field--enclosed v-text-field--outlined" data-v-034e6588><div class="v-input__prepend-outer"><div class="append-btn-v2 d-flex align-center justify-center" data-v-034e6588><i aria-hidden="true" class="v-icon notranslate mdi mdi-minus theme--light" style="font-size:20px;" data-v-034e6588></i></div></div><div class="v-input__control"><div class="v-input__slot" style="height:50px;"><fieldset aria-hidden="true"><legend style="width:0px;"><span>&#8203;</span></legend></fieldset><div class="v-text-field__slot"><input maxlength="9" id="input-63718159" type="text" value="0"></div></div></div><div class="v-input__append-outer"><div class="append-btn-v2 d-flex align-center justify-center" data-v-034e6588><i aria-hidden="true" class="v-icon notranslate mdi mdi-plus theme--light" style="font-size:20px;" data-v-034e6588></i></div></div></div></div> <div class="mt-4 px-5" data-v-034e6588><button type="button" class="fz-18 v-btn v-btn--block v-btn--contained v-btn--rounded theme--light v-size--default primary" style="height:50px;" data-v-034e6588><span class="v-btn__content">
+      Add to Cart
+    </span></button> <button type="button" class="fz-18 mt-4 v-btn v-btn--block v-btn--depressed v-btn--flat v-btn--outlined v-btn--rounded theme--light v-size--default primary--text" style="height:50px;" data-v-034e6588><span class="v-btn__content">
+      Save to Project
+    </span></button></div> <!----> <div class="mt-5" data-v-034e6588><div class="mb-4 d-flex align-center" data-v-034e6588><span data-v-034e6588>Packaging: </span> <span class="mx-2" data-v-034e6588></span> <!----></div></div> <div data-v-034e6588><div class="price-item" data-v-034e6588><span class="font-Bold" data-v-034e6588>Unit Price</span> <span data-v-034e6588>$ 0</span></div> <div class="price-item" data-v-034e6588><span class="font-Bold" data-v-034e6588>Ext. Price </span> <span data-v-034e6588>$ 0</span></div> <!----></div> <div role="dialog" class="v-dialog__container" data-v-034e6588><!----></div> <div data-v-034e6588><div role="dialog" class="v-dialog__container"><!----></div></div></div> <div loadingSize="16" class="mt-2" data-v-2eff23ae><a href="javascript:;" class="fz-14 warning--text hoverUnderline" data-v-2eff23ae>
+              Quote for This Item
+            </a></div></div> <div class="floatCollapseBtnWrap bgWhite pointer d-flex align-center" data-v-2eff23ae><i aria-hidden="true" class="v-icon notranslate mdi mdi-chevron-right theme--light lighter--text" style="font-size:30px;" data-v-2eff23ae></i></div></div> <div data-v-2eff23ae><div role="dialog" class="v-dialog__container"><!----></div></div></div> <div><!----></div></div></div></div></div><script>window.__NUXT__=(function(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C){return {layout:"datasheet",data:[{pdfUrl:"https:\u002F\u002Fwmsc.lcsc.com\u002Fwmsc\u002Fupload\u002Ffile\u002Fpdf\u002Fv2\u002Flcsc\u002F2309071525_KNSCHA-189RV0015_C7471877.pdf",detail:{productId:8528077,productCode:"C7471877",productModel:"189RV0015",parentCatalogId:312,parentCatalogName:"Capacitors",catalogId:418,catalogName:"Aluminum Electrolytic Capacitors - SMD",brandId:12108,brandNameEn:"KNSCHA",encapStandard:"SMD,D6.3xL7.7mm",split:g,productUnit:"Piece",minPacketUnit:"Reel",minBuyNumber:g,maxBuyNumber:-1,minPacketNumber:h,isEnvironment:b,allHotLevel:a,isHot:c,isPreSale:c,isReel:c,reelPrice:i,stockNumber:23045,shipImmediately:j,ship3Days:k,stockSz:j,stockJs:k,wmStockHk:i,productPriceList:[{ladder:g,productPrice:"0.0682",discountRate:f,currencyPrice:l,usdPrice:l,currencySymbol:e,cnyProductPriceList:a,isForeignDiscount:a,ladderLevel:a,discountPrice:"0.0648",extPrice:"0.32",isRealOff:b},{ladder:50,productPrice:"0.0551",discountRate:f,currencyPrice:m,usdPrice:m,currencySymbol:e,cnyProductPriceList:a,isForeignDiscount:a,ladderLevel:a,discountPrice:"0.0524",extPrice:"2.62",isRealOff:b},{ladder:150,productPrice:"0.0486",discountRate:f,currencyPrice:n,usdPrice:n,currencySymbol:e,cnyProductPriceList:a,isForeignDiscount:a,ladderLevel:a,discountPrice:"0.0462",extPrice:"6.93",isRealOff:b},{ladder:h,productPrice:"0.0436",discountRate:f,currencyPrice:o,usdPrice:o,currencySymbol:e,cnyProductPriceList:a,isForeignDiscount:a,ladderLevel:a,discountPrice:"0.0415",extPrice:"41.50",isRealOff:b},{ladder:p,productPrice:"0.0397",discountRate:f,currencyPrice:q,usdPrice:q,currencySymbol:e,cnyProductPriceList:a,isForeignDiscount:a,ladderLevel:a,discountPrice:"0.0378",extPrice:"75.60",isRealOff:b},{ladder:5000,productPrice:"0.0377",discountRate:f,currencyPrice:r,usdPrice:r,currencySymbol:e,cnyProductPriceList:a,isForeignDiscount:a,ladderLevel:a,discountPrice:"0.0359",extPrice:"179.50",isRealOff:b}],productImages:["https:\u002F\u002Fassets.lcsc.com\u002Fimages\u002Flcsc\u002F900x900\u002F20230916_KNSCHA-189RV0015_C7471877_front.jpg","https:\u002F\u002Fassets.lcsc.com\u002Fimages\u002Flcsc\u002F900x900\u002F20230916_KNSCHA-189RV0015_C7471877_back.jpg","https:\u002F\u002Fassets.lcsc.com\u002Fimages\u002Flcsc\u002F900x900\u002F20230916_KNSCHA-189RV0015_C7471877_blank.jpg"],pdfUrl:"https:\u002F\u002Fdatasheet.lcsc.com\u002Flcsc\u002F2309071525_KNSCHA-189RV0015_C7471877.pdf",productDescEn:a,productIntroEn:"680uF 6.3V 600mA@100KHz 160mΩ@100KHz ±20% SMD,D6.3xL7.7mm  Aluminum Electrolytic Capacitors - SMD ROHS",productArrange:"Tape & Reel (TR)",productWeight:.0006318,foreignWeight:a,weight:.632,isForeignOnsale:b,isAutoOffsale:c,isHasBattery:c,title:"KNSCHA 189RV0015",isFavorite:c,paramVOList:[{paramCode:"param_11009_s",paramName:"工作温度",paramNameEn:"Operating Temperature",paramValue:s,paramValueEn:s,paramValueEnForSearch:a,isMain:c,sortNumber:d},{paramCode:"param_11008_nt",paramName:"工作寿命",paramNameEn:"Lifetime @ Temp",paramValue:t,paramValueEn:t,paramValueEnForSearch:p,isMain:c,sortNumber:d},{paramCode:"param_11001_n",paramName:"容值",paramNameEn:"Capacitance",paramValue:u,paramValueEn:u,paramValueEnForSearch:680000000,isMain:b,sortNumber:d},{paramCode:"param_11005_n",paramName:"电容体长度",paramNameEn:"L",paramValue:v,paramValueEn:v,paramValueEnForSearch:7.7,isMain:c,sortNumber:d},{paramCode:"param_11003_n",paramName:"额定电压",paramNameEn:"Rated Voltage",paramValue:w,paramValueEn:w,paramValueEnForSearch:x,isMain:b,sortNumber:d},{paramCode:"param_11004_n",paramName:"电容体直径",paramNameEn:"φD",paramValue:y,paramValueEn:y,paramValueEnForSearch:x,isMain:c,sortNumber:d},{paramCode:"param_11006_nt",paramName:"纹波电流",paramNameEn:"Ripple Current",paramValue:z,paramValueEn:z,paramValueEnForSearch:.6,isMain:b,sortNumber:d},{paramCode:"param_11007_nt",paramName:"等效串联电阻",paramNameEn:"Equivalent Series Resistance(ESR)",paramValue:A,paramValueEn:A,paramValueEnForSearch:.16,isMain:b,sortNumber:d},{paramCode:"param_11002_s",paramName:"精度",paramNameEn:"Tolerance",paramValue:B,paramValueEn:B,paramValueEnForSearch:a,isMain:b,sortNumber:d}],isAddNotice:a,subscribeQuantity:a,eccn:C,currencyType:"USD",currencySymbol:e}}],fetch:[],error:a,state:{user:"eyJlbWFpbCI6bnVsbCwidXNlck5hbWUiOm51bGwsImNhcnRDb3VudCI6MCwiaXNMb2dpbiI6ZmFsc2UsImlzTW9udGhseSI6ZmFsc2UsImN1cnJlbmN5Q29kZSI6IlVTRCIsImN1cnJlbmN5U3ltYm9sIjoiJCIsImN1cnJlbmN5UmF0ZVVzZCI6MSwic3lzdGVtVGltZSI6IjIwMjQtMDQtMTAgMTU6MjI6MDIiLCJjYXJ0TmFtZSI6bnVsbH0=",isMobile:c,catalogs:[],cipher:a,refererUrl:C,currencyList:[]},serverRendered:b,routePath:"\u002Fdatasheet\u002Flcsc_datasheet_2309071525_KNSCHA-189RV0015_C7471877.pdf",config:{}}}(null,true,false,1,"$","0.95",5,1000,0,7150,15895,.0682,.0551,.0486,.0436,2000,.0397,.0377,"-55℃~+105℃","2000hrs@105℃","680uF","7.7mm","6.3V",6.3,"6.3mm","600mA@100KHz","160mΩ@100KHz","±20%",""));</script><script src="/_nuxt/46da8f2.js" defer></script><script src="/_nuxt/85084b3.js" defer></script><script src="/_nuxt/1fc3a58.js" defer></script><script src="/_nuxt/39b2841.js" defer></script><script src="/_nuxt/320f9f5.js" defer></script><script src="/_nuxt/40de50d.js" defer></script><script src="/_nuxt/d41d626.js" defer></script>
+  </body>
+</html>

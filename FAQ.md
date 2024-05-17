@@ -30,4 +30,4 @@ They're not terribly expensive, and using one of these along with soldering past
 
 # Will you build one of these for me?
 
-Nope.  Sorry, the fun is in the building challenges.
+Nope.  Sorry, the fun is in the building
