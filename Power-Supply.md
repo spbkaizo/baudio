@@ -28,27 +28,15 @@ The requirement for low Equivalent Series Resistance (ESR) in these
 capacitors is crucial for the proper functioning of the LM2663. Low
 ESR is important because:
 
-    *   Efficiency: Low ESR capacitors reduce power loss within the
-    capacitor, increasing the overall efficiency of the voltage
-    conversion process. High ESR can lead to significant IR losses,
-    where I is the current through the capacitor and R is the ESR.
-    *   Voltage Ripple: Low ESR helps in minimizing the output
-    voltage ripple. The ESR contributes to the ripple voltage seen
-    at the output, in conjunction with the output current and the
-    frequency of operation. A lower ESR will lead to a smaller
-    ripple, which is desirable for most electronic applications
-    that require a stable and clean power supply.  *   Stability:
-    The performance and stability of the charge pump circuit can
-    be affected by the ESR of the capacitors. Low ESR capacitors
-    help ensure that the circuit remains stable under various load
-    conditions.  *   Thermal Performance: High ESR values lead to
-    higher power dissipation within the capacitor, which can raise
-    its temperature and potentially affect its reliability and
-    lifespan. Low ESR capacitors are better at managing thermal
-    loads and can contribute to the overall reliability of the
-    circuit.  *   To meet these requirements, it's recommended to
-    use capacitors that specifically mention low ESR characteristics
-    for use with the LM2663.
+    *   Efficiency: Low ESR capacitors reduce power loss within the capacitor, increasing the overall efficiency of the voltage.
+        *   High ESR can lead to significant IR losses where I is the current through the capacitor and R is the ESR.
+    *   Voltage Ripple: Low ESR helps in minimizing the output voltage ripple.
+        *   The ESR contributes to the ripple voltage seen at the output voltage ripple.
+        *   A lower ESR will lead to a smaller ripple
+    *   Stability: The performance and stability of the charge pump circuit can be affected by the ESR of the capacitors
+        *   Low ESR capacitors help ensure that the circuit remains stable under various load conditions
+    *   Thermal Performance: High ESR values lead to higher power dissipation within the capacitor
+        *   Low ESR capacitors are better at managing thermal loads
 
 The Panasonic EEE-FT series are a good fit here - part number
 EEEFT1C470AR is the 47uF version.  It is characterized by an ESR
@@ -68,18 +56,10 @@ is primarily due to its internal architecture and the technology
 used in its design, which are optimized for low-power, high-performance
 audio applications.
 
-    *   Low Power Consumption: Operating at lower voltages directly
-    translates to lower power consumption, which is crucial for
-    USB-powered devices. USB specifications limit the power available
-    to devices, so maintaining high efficiency and low power usage
-    is essential. A 3.3V operating voltage helps ensure the PCM2706
-    can deliver its functionality within the power constraints of
-    a USB interface.  *   Signal Integrity: Lower voltage levels
-    can contribute to better signal integrity, especially in
-    mixed-signal circuits like audio DACs, where both analog and
-    digital circuits coexist. Operating at 3.3V helps reduce noise
-    levels within the chip, which is beneficial for achieving
-    high-quality audio reproduction.
+    *   Low Power Consumption: Operating at lower voltages directly translates to lower power consumption
+    *   A 3.3V operating voltage helps ensure the PCM2706 can deliver its functionality 
+    *   Signal Integrity: Lower voltage levels can contribute to better signal integrity
+    *   Operating at 3.3V helps reduce noise levels within the chip
 
 The LM117  can deliver up to 800mA of output current, which makes
 it suitable for medium-power applications. You should have plenty

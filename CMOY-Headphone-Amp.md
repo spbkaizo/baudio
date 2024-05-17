@@ -7,6 +7,12 @@
 
 ![buffers](schematics/Cmoy%20Buffers.svg)
 
+## Simulator Demo
+
+Using the awsome CircuitJS we can model the amplifier circuit in it's entirity, and you can change the resistors to see what the various effects are (e.g. changing the 2.7k resistor changes the gain), as well as play with the capacitors.  The story here is that it is *your* amplifier, you can just go ahead with the defaults or you can tighten the values to suit your needs.  For example, if you are going to be using the PCM2706 only then this has a lower line output that than if you are intending to just use the PCM5102A.  Perhaps you really only want line-in from that [European Model Sony D-EJ2000](https://kaizo.org/2024/01/22/sony-d-ej200-eu-volume-limiting/), and need more gain.  You can build the optimal amplifier design by changing just a few component values.
+
+[CircuitJS Simulator](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCDsB0AcYCYCsBTAtJEBmWDqQDZlcwAWLATgoAYDSQ6Qknqn0wwAoAJwetial6BfiCEDWpSNWo8+ApEPkNSrVmBkzOAY0H1F9UowMg10TTIh5SFJJEoJY1UgnLlM1c9S4BzZXVYRAQIkAlNTTgAlZXEYrARwyVZmNVNoJB0QeDC7MNgnJkJEr00IT2osZwp4BDJnLCRQ+LTLOXzkovaGSAT1C1k-LoIerIKCfMTOVQoQCkcmEXBqUIX1NLC0UnTkLFJYGjtnInpyhCwNfsvqXqjZuaZ5qgS91KSmRLSM6Keme5+QsKpVQgNApYoZADuow6YTmCiKsihcL0s3m4wknCRaImFCK6IivFxYXxGhW+NYCGksl4pJyiw4CGSiz6iPAiCZ6nZDAmrIZgQmtO5GMJ2IEyMIEiWWj84vGqIEkFgJwiuiJUEZSxWPVSeDAVH1BsNsHYEDQ5QIu2okAubn4sCILW8mNmRW1LuJPOdgrdgvJchMAaUAXCF00nD8JmDkZWak4YEgwhWJnsOSKEFDZmqSAzVwgADUAPYAGwArgBbFAgADCBYAdgAXbjF52B4SiEwDKBIBLJ7tMRCTKEAlFBFGs6T6TpgVOAuR81bgRkc8LWjI0pcLxAFUKpVdTagzMDnHtKMjAkxlaAbLZIGT2ihCJdBFLmM5lL2OZdHgc7lWL7f0p+yjqOgEjmNUCCMhQfIHEgzTlE6fhboEojIQwriTLoiB7GIBTfs8BQgWgAhml4cEEBQ8QHmcFSEGAiiOlwUL4Q8AgsTYs7MceYgUGEZ6SLxETMUIAl8SJY4fjIm4bi8QmLlJsnYQIsm8tximkCsKlehpYTqUmSi8jpKL8RJwn6fQZATB2txHkU2YJLZunweE54fJ4XzgFgdlpl5xLAkCrCgm56RznsCino0J7KhcnAAPLgJFxkiMkBkRNERj6EopDTmO4DYAgglgNARjBRkBYgGiyqMvYCiOlaNRggk8xYJw5UFSo4TVZQLSKogL4WESoTIHlTUzC15UcB1FJWt15S9cNCEyINRDME1bLYK12BYFNFUzTMnjHv1mjLcN20JFg23jTxWSdTNYH0StaQQBZnA4CwIAAGIQNtFxZBYIIQAAygWJbcNoKAADoAM4fdwKAAI4ligtbaAAnq9CisF9HwJGgQMg2DkNQ4WRb1gAhj4KCcEA)
+
 ## Part selection
 
 Part selection matters.  The BOM has pre-selected values for components, and should be all you need.
@@ -65,7 +71,7 @@ These 0603 sized, with 0.1uF ratings.  They're pretty generic, indeed when you o
 
 #### C2L, C2R
 
-We have in the schematic for the Cmoy amplifier two capacitors, 0.1uF value, at C2L and C2R.  These need to be good quality and not affect the audio signal.
+We have in the schematic for the Cmoy amplifier two capacitors, 1uF value, at C2L and C2R.  These need to be good quality and not affect the audio signal.
 
 The tl;dr here is that you should not use MLCC capacitors anywhere in the signal path, as they will reduce audio quality very drastically.  The best type to use here for the components space (1206) are film capacitors.
 
@@ -76,11 +82,9 @@ Film capacitors are often considered superior for use in the signal path of audi
 *   Non-Polarized Nature: Film capacitors are non-polarized, making them more versatile in AC signal applications than polarized electrolytic capacitors. This feature allows for more straightforward implementation in the signal path, as there is no need to consider the orientation of the capacitor, reducing the risk of installation errors that could affect the signal integrity.
 *   Low ESR and ESL: Film capacitors generally have low equivalent series resistance (ESR) and equivalent series inductance (ESL), which translates to better high-frequency performance and lower self-resonance issues compared to electrolytic and some MLCCs. This quality is particularly important in the signal path, where preserving the integrity of high-frequency signals is crucial for detailed and transparent audio reproduction.
 
-The BOM identifies these as being Panasonic ECPU1C104MA5, details are here:  https://industrial.panasonic.com/ww/products/pt/film-cap-electroequip/models/ECPU1C104MA5 
-
 Unless you have trouble sourcing these, stick with them for the best results.  
 
-Version 1.1 of the board has space for an 0805, which means we're pretty limited to what we can place here.  V1.2 will have a 1210 sized component placement, giving you much more choice.
+The board layout has space for a 1210 sized component here.
 
 ### Resistors
 
