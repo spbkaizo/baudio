@@ -52,19 +52,24 @@ For now, you should know this - where the op-amp power supply is concerned, we s
 
 In summary, low ESR is a key factor in the design of a headphone amplifier power supply due to its influence on heat generation, efficiency, audio quality, and the power supply's response to load changes. By minimizing energy loss and improving the stability and cleanliness of the power delivered to the amplifier, low ESR capacitors contribute significantly to the overall performance and reliability of the system, leading to a better listening experience.
 
-#### C1V+, C1V-
+#### VC1+, VC1- (..2..3)
 
-These are the power caps for the +/- rails, that feed the demands of the Cmoy amplifier.  We've selected the APAQ Tech 160AVEA221M0608 (LCSC Part C494512) as these have a very low ESR (22m@100kHz~300kHz).  The value is 220uF, but higher wouldn't be problem (i.e. 330, 470), and you may even be able to get away with as low as 100uF.  If in doubt, just stick with the schematic value, but try and get some with a low ESR.  In general, for audio applications, reservoir capacitors with an ESR of less than 0.1 ohms are often considered to be in the low ESR category, and such values are typically sought after to ensure high-quality power delivery. The APAQ's are rated at 0.022 Ohms.
+These are the power caps for the +/- rails, that feed the demands of the Cmoy amplifier.  
 
-https://datasheet.lcsc.com/lcsc/2004140933_APAQ-Tech-160AVEA221M0608_C494512.pdf
+Large capacity capacitors in MLCC format are rare, but Murata Electronics have some 100uF with a 6.3v rating.
 
-#### C3V+, C3V-
+MLCC's have been chosen here over electrolytics as they have a low ESR, often in the range of a few milliohms to about 0.1 ohms.
+
+The 3 of them in parallel will provide 300uF per rail of power.
+
+
+#### VC4+, VC4-
 
 Next up are the 10uF capacitors for the power rails - these provide power at a rate faster than the reservoir capacitors, and they fill the gap between them and the next ones, which are 0.1uF.
 
-These are tantalum capacitors.  They primarily serve to improve the dynamic performance of the amp.  The size is CASE-A.
+These are tantalum capacitors.  They primarily serve to improve the dynamic performance of the amp.  The size is CASE-A.  You might (for ethical reasons) not want tantalum, in which case you should be able to use MLCC capacitors here.
 
-#### C2V+, C2V-
+#### VC5+, VC5-
 
 These 0603 sized, with 0.1uF ratings.  They're pretty generic, indeed when you order the BOM the minimum order will be for 100 pieces (total cost, 75 cents!), so they're sprinkled liberally over the board.  You'll need a couple to go here.
 
@@ -84,7 +89,7 @@ Film capacitors are often considered superior for use in the signal path of audi
 
 Unless you have trouble sourcing these, stick with them for the best results.  
 
-The board layout has space for a 1210 sized component here.
+The board layout has space for a 1210 sized component here.  The reality of the situation is that you will only find the Panasonic ECPU (A) Polypropylene Film Capacitor that fit the requirements.  A bonus is that they look really, really cool.
 
 ### Resistors
 
@@ -92,9 +97,10 @@ Mostly you only need to be overly concerned with resistors in the signal path, a
 
 For the Cmoy, we have these which we need to be concerned with.
 
-#### R2L, R2R
+#### R1L, R1R
 
-Here the bom specifies Panasonic ERA6AEB104V, these again have a 0.1% tolerance.  The value according to the schematic is 100k, but you can change this (more on that later...).  They are 0805 sized.
+100k 0604 resistor.  This forms part of the CR filter that is a high-pass filter, so if you change this value it will have consequences.
+
 
 #### R3L, R3R
 
@@ -104,7 +110,7 @@ R3 sets the gain of the device, in tandem with R4.  We'll come onto that later..
 
 #### R4L, R4R
 
-Here the bom specifies Bourns CMP0603AFX-1002ELF, again with a 1% tolerance.  They are 0603 sized, with a value of 10k.
+You want to have 1%, or even 0.1% tolerances here.  However, the digipot has 1% tolerance so if you measure that and figure out which channel are lower, you use the higher value resistor on that channel.  Alternatively don't worry too much about it, and simply get them with tight tolerance.
 
 R4 sets the gain of the device, in tandem with R3.
 
@@ -114,6 +120,8 @@ You can see this by running `calc_gain.py` in the root directory of the project,
 python3 calc_gain.py 1K 2K  
 The gain of the CMoy amplifier is: 3.00
 ```
+
+You can also play with this value on the simulator.
 
 If you want to tinker with the gain, you should read this: https://tangentsoft.com/audio/cmoy//tweaks.html
 
@@ -128,8 +136,6 @@ If you are just going to be using the PCM2706, then the output line voltages wil
 
 Further, you should be aware of anything you plug into the line in port, and what voltage that can put out.  To determine it, play a 1Khz sine wave from the device at full volume, and measure the AC voltage with a multimeter.  You should have a good ball park figure to play with.  
 
-The default gain in the schematic is 11, because 11 is louder than 10.  It also means it can work with a source that is low.  This is particuarly important if you're subject to EU volume regulations.  For example, the apple dongles will only put out 0.5 Vrms to comply with these standards.
-
 If unsure, just go with the defaults, and if you find the gain is too high, you can always change it later.
 
 *Optional Changes*
@@ -142,17 +148,14 @@ If unsure, just go with the defaults, and if you find the gain is too high, you 
 Obviously you can see the relationship, so just pick a value close to what you are after (e.g. 4.7K)
 
 
-#### R5L, R5R (Optional)
+#### R5L, R5R (100)
 
-Here's where it gets interesting.  You can jumper this part via the exposed pads near it, or use a 0 ohm resister here.  Alternatively you can leave it unpopulated, in which case you will want to build the amplifier buffer circuit.
+Either use a 0 resistor or a 100 here - it must be populated.  If unsure, just go with the schematic default.
 
-If you want the best possible sound out of this thing, you should populate the buffer circuit. 
+#### LR3, BR3 (100)
 
-There another reason it exists - when shorted this gives the amp the best control over the headphone drivers, and also results in the best sound in most circumstances.  However you might feel there is excessive noise in the output - for that I will defer to Tangent, who recommends 10-100 ohms here if required as a lasst resort to help address any excessive noise issues you get in the headphones.  See https://tangentsoft.com/audio/cmoy//tweaks.html for details on this.  
+Either use a 0 resistor or a 100 here - it must be populated.  If unsure, just go with the schematic default.  This one exists to help stabilise the op-amp against capacitive loads.
 
-#### BUFL, BUFR (Optional)
-
-These are the output 100 ohm resistors in the signal path.  I've identified the TR0603B100RP0525Z part, made by a company called 'Ever Ohms' (LCSC Part number C881023), as they are capable of 100mW and have a tolerance of 0.1%, which is absoluttely perfect to get balanced output.
 
 #### Other Resistors
 
@@ -210,13 +213,9 @@ else:
 
 ```
 
-With R2 at 100k and C2 at 0.1uF, the cutoff frequency is approximately 15.92 Hz. This is below the typical human hearing range (20 Hz - 20 kHz), so it would allow almost all audible frequencies to pass through while filtering out very low-frequency noise and DC offset.
+With R2 at 100k and C2 at 1uF, the cutoff frequency is approximately 1.6 Hz. This is below the typical human hearing range (20 Hz - 20 kHz), so it would allow almost all audible frequencies to pass through while filtering out very low-frequency noise and DC offset.
 
-If C2 were 1uF (with R2 still at 100k), the cutoff frequency would be lower, around 1.59 Hz. This would allow even lower frequencies to pass through, which might not be necessary for audio applications, as most audio content doesn't contain significant information in that range. Additionally, a lower cutoff frequency could allow more unwanted low-frequency noise or rumble to pass through, which could potentially affect the sound quality or cause more power to be consumed in reproducing inaudible frequencies.
-
-If you wanted for whatever reason, to use a 1u cap (you'll struggle to find one in that size for the footprint on the board!) then R2 should be set to 10K.  For a 0.47uF, this would be a 22k.
-
-Why might you want to be changing these values?  I'm glad you asked....
+You may want to experiment here, with changing R2 to be a lower value, say 10K.  
 
 #### Resistor Noise
 
@@ -301,12 +300,6 @@ However, if you are intending to use the daughterboard PCM5102A DAC, then you ne
 Given we are building a Cmoy amplifier with a +5v/-5v arrangement, not only will it not cope with the gain of 11  * 2.1v, equally the output will be massive and almost certain to destroy something.  
 
 Of note is that the PCM2706's line level output is far lower, at around 0.55v.  If you do decide to bridge these pads, you will need to unbridge them later if you want to change the arrangement.
-
-##### Analog Pot
-
-I've deliberately left out this part from the BOM, as you may not need or want it.  If you do want it, then you can skip the digital volume control on the attiny, either by not bothering to populate it, or configuring it do something else.
-
-Another reason I've left it out, as these are easily found on AliExpress, if you search for Alps RK097 you will find a million of them.  Note if you go this route, these are likely to be counterfeit (but will probably still work fine!).  You will want the 10K version with either 'audio' or 'log/logarthmic' in the title, with 6 pins on the bottom.  If you're after a legitimate original part, the mfr number is RK09712200HA - I think.  Caveat Emptor.
 
 ##### Digital Pot
 
