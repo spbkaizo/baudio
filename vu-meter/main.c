@@ -1,20 +1,17 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include "adc.h"
 #include "led_control.h"
 #include "knight.h"
 #include "binary.h"
-#include "vu1.h"  // Make sure this is included
+#include "vu1.h"
 
 #define MODE_KNIGHT_RIDER 0
 #define MODE_VU_METER 1
 #define MODE_BINARY 2
 
 #define BUTTON_PIN PIN3_bp
-
-// Define ADC channels based on connected pins
-#define ADC_CHANNEL_RIGHT ADC_MUXPOS_AIN10_gc  // : PB2
-#define ADC_CHANNEL_LEFT  ADC_MUXPOS_AIN7_gc   // : PA7
 
 #define BAUD_RATE 115200
 
@@ -56,7 +53,7 @@ void init_ports() {
     PORTB.DIR |= (1<<PIN1_bp) | (1<<PIN0_bp);
     // Configure PB3 as input with pull-up enabled
     PORTB.DIR &= ~(1<<BUTTON_PIN);
-    PORTB.PIN3CTRL = PORT_PULLUPEN_bm;
+    PORTB.PIN3CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;  // Enable pull-up and trigger on falling edge
 }
 
 
@@ -64,7 +61,8 @@ int main(void) {
     usart_init();  // Initialize USART
     init_ports();
     setup_adc();
-	sei();  // Enable global interrupts
+    PORTB.INTFLAGS = PORT_INT3_bm;
+    sei();  // Enable global interrupts
 
     //usart_print("Hello, world!\n");
 

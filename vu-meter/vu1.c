@@ -36,6 +36,8 @@ void display_volume(uint16_t volume) {
     }
 }
 
+// moved to adc.c
+/* 
 void setup_adc() {
     ADC0.CTRLC = ADC_PRESC_DIV16_gc;       // Set the ADC prescaler to 16 (20 MHz / 16 = 1.25 MHz ADC clock)
     ADC0.CTRLA = ADC_ENABLE_bm;            // Enable the ADC
@@ -50,6 +52,7 @@ uint16_t read_adc(uint8_t channel) {
     ADC0.INTFLAGS = ADC_RESRDY_bm;  // Clear the interrupt flag
     return ADC0.RES;  // Return the ADC result
 }
+*/
 
 void volume_meter_task(uint8_t channel) {
     uint16_t volume = read_adc(channel);
