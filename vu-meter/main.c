@@ -15,15 +15,33 @@
 
 #define BAUD_RATE 115200
 
-volatile uint8_t mode = MODE_KNIGHT_RIDER;
+#define DEBOUNCE_THRESHOLD 0  // Increase the debounce threshold
+
+volatile uint8_t mode = MODE_VU_METER;
+
+volatile uint8_t last_state = 1;  // Initialize to 1 since the pull-up resistor keeps the pin high when not pressed
 
 ISR(PORTB_PORT_vect) {
-    if (PORTB.INTFLAGS & (1 << BUTTON_PIN)) {  // Check if the interrupt is from the button pin
-        mode = (mode + 1) % 3;  // Cycle through the modes
-        PORTB.INTFLAGS = (1 << BUTTON_PIN);  // Clear the interrupt flag
-    }
-}
+    static uint8_t debounce_counter = 0;
+    uint8_t current_state = PORTB.IN & (1 << BUTTON_PIN);
 
+    // Only process button press if state has been stable for 10 checks
+    if (current_state == last_state) {
+        if (debounce_counter < DEBOUNCE_THRESHOLD ) {
+            debounce_counter++;
+        } else {
+            // Act on button press
+            if (current_state == 0) {  // Check if button is pressed (state is low)
+                mode = (mode + 1) % 3;
+                debounce_counter = 0;  // Reset counter after action
+            }
+        }
+    } else {
+        debounce_counter = 0;  // Reset counter if state changes
+    }
+    last_state = current_state;
+    PORTB.INTFLAGS = (1 << BUTTON_PIN);  // Clear the interrupt flag
+}
 
 void usart_init() {
     // Set the baud rate
@@ -61,17 +79,13 @@ int main(void) {
     usart_init();  // Initialize USART
     init_ports();
     setup_adc();
-    PORTB.INTFLAGS = PORT_INT3_bm;
     sei();  // Enable global interrupts
+    calibrate_adc_baseline(ADC_CHANNEL_LEFT);
 
     //usart_print("Hello, world!\n");
 
-    uint8_t mode = 0; // Start with Knight Rider effect
-    uint8_t knight_rider_cycles = 0;
-
-
     while(1) {
-		switch (mode) {
+         switch (mode) {
             case MODE_KNIGHT_RIDER:
                 knight_rider_effect();
                 break;

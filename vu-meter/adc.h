@@ -10,6 +10,7 @@
 #define ADC_CHANNEL_LEFT  ADC_MUXPOS_AIN7_gc   // PA7
 
 // Function prototypes
+void calibrate_adc_baseline(uint8_t channel);
 void setup_adc();
 uint16_t read_adc(uint8_t channel);
 

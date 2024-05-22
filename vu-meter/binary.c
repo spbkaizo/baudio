@@ -3,7 +3,7 @@
 #include <avr/io.h>
 #include <util/delay.h>
 
-#define DELAY_TIME 500  // Set delay time to 500 milliseconds
+#define DELAY_TIME 50  // Set delay time to 500 milliseconds
 
 void display_binary(uint8_t number) {
     // Map each bit of the number to the corresponding LED

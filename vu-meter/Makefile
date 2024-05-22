@@ -10,7 +10,7 @@ CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
 LDFLAGS = 
 
 # Source and object files
-SRC = main.c adc.c knight.c binary.c vu1.c led_control.c cylon.c
+SRC = main.c adc.c knight.c binary.c vu1.c led_control.c cylon.c fixfft.c
 OBJ = $(SRC:.c=.o)
 
 # Output binary

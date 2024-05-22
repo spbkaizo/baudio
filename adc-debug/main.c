@@ -13,7 +13,7 @@ void send_adc_value(uint8_t channel) {
 int main(void) {
     usart_init();  // Initialize USART
     setup_adc();   // Initialize ADC
-
+    usart_write_string("hai");
     while (1) {
         send_adc_value(ADC_CHANNEL_RIGHT);  // Send ADC reading to USART
         _delay_ms(500);  // Simple delay for readability
