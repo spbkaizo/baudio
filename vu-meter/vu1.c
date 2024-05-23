@@ -7,12 +7,10 @@
 
 #define LED_COUNT 8
 #define ADC_MAX_VALUE 1023
-#define NOISE_THRESHOLD 1  // Possibly lower this if it's too high
+#define NOISE_THRESHOLD 1  
 #define SAMPLE_COUNT 100
-#define SENSITIVITY 8
-#define SENSITIVITY_LOG_BASE 1.3  // Define a base for the logarithmic calculation
-#define SMOOTHING_FACTOR 0.8  // Determines the impact of new readings
-#define WINDOW_SIZE 32
+#define SENSITIVITY 6 // adjust up/down if the vu meter isn't triggered satisfactorily at your normal listening volume
+#define WINDOW_SIZE 24 // samples before updating - can make it smoother or faster.
 
 
 uint16_t baseline = 0;
@@ -25,7 +23,7 @@ void calibrate_adc_baseline(uint8_t channel) {
     for (int i = 0; i < SAMPLE_COUNT; i++) {
         sample = read_adc(channel);
         sum += sample;
-        _delay_ms(10);  // Delay to allow ADC to settle
+        _delay_ms(5);  // Delay to allow ADC to settle
     }
     baseline = sum / SAMPLE_COUNT;
 }
