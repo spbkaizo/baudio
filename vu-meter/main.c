@@ -6,21 +6,26 @@
 #include "knight.h"
 #include "binary.h"
 #include "vu1.h"
+#include "spectrum.h"
+#include "timer.h"
 
 #define MODE_KNIGHT_RIDER 0
 #define MODE_VU_METER 1
 #define MODE_BINARY 2
+#define MODE_SPECTRUM_ANALYZER 3
 
 #define BUTTON_PIN PIN3_bp
 
 #define BAUD_RATE 115200
 
 #define DEBOUNCE_THRESHOLD 0  // Increase the debounce threshold
+#define DEBOUNCE_TIME 50  // Debounce time in milliseconds
 
 volatile uint8_t mode = MODE_VU_METER;
 
 volatile uint8_t last_state = 1;  // Initialize to 1 since the pull-up resistor keeps the pin high when not pressed
 
+/*
 ISR(PORTB_PORT_vect) {
     static uint8_t debounce_counter = 0;
     uint8_t current_state = PORTB.IN & (1 << BUTTON_PIN);
@@ -32,7 +37,7 @@ ISR(PORTB_PORT_vect) {
         } else {
             // Act on button press
             if (current_state == 0) {  // Check if button is pressed (state is low)
-                mode = (mode + 1) % 3;
+                mode = (mode + 1) % 4;
                 debounce_counter = 0;  // Reset counter after action
             }
         }
@@ -40,6 +45,21 @@ ISR(PORTB_PORT_vect) {
         debounce_counter = 0;  // Reset counter if state changes
     }
     last_state = current_state;
+    PORTB.INTFLAGS = (1 << BUTTON_PIN);  // Clear the interrupt flag
+}
+*/
+
+ISR(PORTB_PORT_vect) {
+    static uint32_t last_debounce_time = 0;
+    uint32_t current_time = millis();  // Assume a function returning system uptime in milliseconds
+    uint8_t current_state = PORTB.IN & (1 << BUTTON_PIN);
+
+    if (current_time - last_debounce_time > DEBOUNCE_TIME) {
+        if (current_state == 0) {  // Check if button is pressed (state is low)
+            mode = (mode + 1) % 4;
+            last_debounce_time = current_time;  // Update the last debounce time
+        }
+    }
     PORTB.INTFLAGS = (1 << BUTTON_PIN);  // Clear the interrupt flag
 }
 
@@ -71,7 +91,9 @@ void init_ports() {
     PORTB.DIR |= (1<<PIN1_bp) | (1<<PIN0_bp);
     // Configure PB3 as input with pull-up enabled
     PORTB.DIR &= ~(1<<BUTTON_PIN);
-    PORTB.PIN3CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;  // Enable pull-up and trigger on falling edge
+    // PORTB.PIN3CTRL = PORT_PULLUPEN_bm | PORT_ISC_FALLING_gc;  // Enable pull-up and trigger on falling edge
+	// Configure to trigger on both edges if the switch is noisy
+	PORTB.PIN3CTRL = PORT_PULLUPEN_bm | PORT_ISC_BOTHEDGES_gc;
 }
 
 
@@ -94,6 +116,9 @@ int main(void) {
                 break;
             case MODE_BINARY:
                 binary_count();
+                break;
+            case MODE_SPECTRUM_ANALYZER:
+                spectrum_update();
                 break;
         }
     }
