@@ -6,10 +6,9 @@
 #include <math.h>
 
 #define LED_COUNT 8
-#define ADC_MAX_VALUE 1023
-#define NOISE_THRESHOLD 1  
+#define NOISE_THRESHOLD 1 
 #define SAMPLE_COUNT 100
-#define SENSITIVITY 6 // adjust up/down if the vu meter isn't triggered satisfactorily at your normal listening volume
+#define SENSITIVITY 3 // adjust up/down if the vu meter isn't triggered satisfactorily at your normal listening volume
 #define WINDOW_SIZE 24 // samples before updating - can make it smoother or faster.
 
 

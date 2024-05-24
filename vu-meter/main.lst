@@ -639,7 +639,7 @@ Disassembly of section .text:
      53e:	99 1f       	adc	r25, r25
      540:	2a 95       	dec	r18
      542:	e1 f7       	brne	.-8      	; 0x53c <.L1^B2>
-     544:	66 e0       	ldi	r22, 0x06	; 6
+     544:	63 e0       	ldi	r22, 0x03	; 3
      546:	70 e0       	ldi	r23, 0x00	; 0
      548:	0e 94 f3 05 	call	0xbe6	; 0xbe6 <__divmodhi4>
      54c:	6d 83       	std	Y+5, r22	; 0x05
