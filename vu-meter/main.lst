@@ -335,7 +335,7 @@ Disassembly of section .text:
      2fa:	e0 ea       	ldi	r30, 0xA0	; 160
      2fc:	f0 e0       	ldi	r31, 0x00	; 0
      2fe:	80 81       	ld	r24, Z
-     300:	80 62       	ori	r24, 0x20	; 32
+     300:	80 63       	ori	r24, 0x30	; 48
      302:	80 83       	st	Z, r24
      304:	08 95       	ret
 

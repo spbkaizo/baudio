@@ -10,7 +10,10 @@ void setup_adc() {
     ADC0.CTRLA = ADC_ENABLE_bm;
 
     // Set the internal reference to 2.5V for ADC0
-    VREF.CTRLA |= VREF_ADC0REFSEL_2V5_gc;
+    //VREF.CTRLA |= VREF_ADC0REFSEL_2V5_gc;
+    //VREF.CTRLA |= VREF_ADC0REFSEL_1V1_gc;
+    VREF.CTRLA |= VREF_ADC0REFSEL_4V34_gc;
+    //VREF.CTRLA |= VREF_ADC0REFSEL_VDD_gc;
 }
 
 uint16_t read_adc(uint8_t channel) {
