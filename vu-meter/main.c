@@ -102,6 +102,7 @@ int main(void) {
     init_ports();
     setup_adc();
     sei();  // Enable global interrupts
+    _delay_ms(500);
     calibrate_adc_baseline(ADC_CHANNEL_LEFT);
 
     //usart_print("Hello, world!\n");

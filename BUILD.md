@@ -4,7 +4,9 @@ The general rule remains - start from smallest to tallest, and inside to out to 
 
 You can use this guide as help for how to build each section in turn, testing along the way.  It's absolutely a great idea to not simply start and carry on till exhausted - have breaks.  There's no rush, and you can research things which you are unsure of or want to know more about.  Slow down.
 
-If using solder paste - less is more.  You can always add more later, but if you use too much it has the opposite to the desired effect, and globules of solder have a habit of sticking to chip pins causing shorts.  
+If using solder paste - less is more.  You can always add more later, but if you use too much it has the opposite to the desired effect, and globules of solder have a habit of sticking to chip pins causing shorts.
+
+Please note that there may be references to wrong components here, they may have been removed or renamed - you are advised to load up the gerbers and schematics in a PCB viewer and follow it there!
 
 ## Stage 1 - Power
 

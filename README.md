@@ -1,7 +1,7 @@
 # BAUDI/O
 
-![Render](images/render.png "Render")
-![PCB](images/pcb.svg "PCB")
+![Photo](images/IMG_3298.jpeg "Photo")
+![PCB](images/PCB_v1.4_2024-05-25.svg "PCB")
 
 ## What is it?
 
@@ -43,7 +43,7 @@ We chose these, as they support the new programming interface known as UPDI.  UP
 
 Now we start to delve into the fun side of things, we've got an array of 8 LEDs on the board, driven by an ATTiny1614 connected to both the left and right pre-amp audio sources.  And, in case you don't want this distraction, then the pins are broken out and accessible for your own code and use.
 
-(TBD: Sample Code for this)
+Source code and .hex file in the vu-meter directory.
 
 ### Digital Volume Control
 
