@@ -4,28 +4,14 @@
 #include <util/delay.h>
 #include <stdlib.h>
 #include <math.h>
+#include "adc.h"
+#include "main.h"  // Include the header file to access global baselines
 
 #define LED_COUNT 8
 #define NOISE_THRESHOLD 1 
 #define SAMPLE_COUNT 100
 #define SENSITIVITY 3 // adjust up/down if the vu meter isn't triggered satisfactorily at your normal listening volume
 #define WINDOW_SIZE 24 // samples before updating - can make it smoother or faster.
-
-
-uint16_t baseline = 0;
-
-void calibrate_adc_baseline(uint8_t channel) {
-    uint32_t sum = 0;
-    uint16_t sample;
-
-    // Take multiple samples
-    for (int i = 0; i < SAMPLE_COUNT; i++) {
-        sample = read_adc(channel);
-        sum += sample;
-        _delay_ms(5);  // Delay to allow ADC to settle
-    }
-    baseline = sum / SAMPLE_COUNT;
-}
 
 void display_volume(uint16_t volume) {
     static uint16_t readings[WINDOW_SIZE] = {0};
@@ -48,7 +34,7 @@ void display_volume(uint16_t volume) {
     }
 
     uint16_t averaged_volume = sum / numReadings;
-    int16_t normalized_volume = averaged_volume - baseline;
+    int16_t normalized_volume = averaged_volume - baseline_left;  // Use the correct baseline
 
     if (abs(normalized_volume) < NOISE_THRESHOLD) {
         normalized_volume = 0;
@@ -59,7 +45,6 @@ void display_volume(uint16_t volume) {
         set_led_state(i, i < ledLevel ? 1 : 0);
     }
 }
-
 
 void volume_meter_task(uint8_t channel) {
     uint16_t volume = read_adc(channel);

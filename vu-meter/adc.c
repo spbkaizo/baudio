@@ -1,6 +1,7 @@
-// adc.c
-
 #include "adc.h"
+#include <util/delay.h>
+
+#define SAMPLE_COUNT 100
 
 void setup_adc() {
     // Set the ADC prescaler to 16 (20 MHz / 16 = 1.25 MHz ADC clock)
@@ -31,4 +32,17 @@ uint16_t read_adc(uint8_t channel) {
 
     // Return the ADC result
     return ADC0.RES;
+}
+
+void calibrate_adc_baseline(uint8_t channel, uint16_t *baseline) {
+    uint32_t sum = 0;
+    uint16_t sample;
+
+    // Take multiple samples
+    for (int i = 0; i < SAMPLE_COUNT; i++) {
+        sample = read_adc(channel);
+        sum += sample;
+        _delay_ms(5);  // Delay to allow ADC to settle
+    }
+    *baseline = sum / SAMPLE_COUNT;
 }

@@ -10,7 +10,7 @@ CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
 LDFLAGS = 
 
 # Source and object files
-SRC = main.c adc.c knight.c binary.c vu1.c led_control.c cylon.c fixfft.c spectrum.c timer.c
+SRC = main.c adc.c knight.c binary.c vu1.c led_control.c cylon.c fixfft.c spectrum.c timer.c lcd.c
 OBJ = $(SRC:.c=.o)
 
 # Output binary
@@ -27,7 +27,7 @@ $(TARGET).hex: $(TARGET).elf
 size: $(TARGET).elf
 	@echo
 	@avr-size -B $<
-	avr-objdump -h -S $< > main.lst
+	avr-objdump -h -S $< > $(TARGET).lst
 	@echo
 
 flash: $(TARGET).hex
@@ -37,7 +37,7 @@ read:
 	$(AVRDUDE) -c $(PROGRAMMER_TYPE) -P $(PORT) -p $(MCU) -v
 
 clean:
-	rm -f $(OBJ) $(TARGET).elf $(TARGET).hex
+	rm -f $(OBJ) $(TARGET).elf $(TARGET).hex $(TARGET).lst
 
 .PHONY: all clean flash size read
 

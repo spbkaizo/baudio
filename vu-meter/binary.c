@@ -2,17 +2,36 @@
 #include "led_control.h"
 #include <avr/io.h>
 #include <util/delay.h>
+#include "main.h"
 
-#define DELAY_TIME 50  // Set delay time to 500 milliseconds
+#define DELAY_TIME 50
 
 void display_binary(uint8_t number) {
-    // Map each bit of the number to the corresponding LED
-    PORTA.OUT = (PORTA.OUT & 0x1E) | ((number & 0x1) << PIN4_bp) | ((number & 0x2) << (PIN5_bp-1)) | ((number & 0x4) << (PIN6_bp-2)) | ((number & 0x8) << (PIN3_bp-1));
-    PORTB.OUT = (PORTB.OUT & 0xFC) | ((number & 0x10) >> 4) | ((number & 0x20) >> 4) | ((number & 0x40) >> 6) | ((number & 0x80) >> 6);
+    // Use set_led_state to set each LED according to the bits of the number
+    set_led_state(0, (number & (1 << 0)) >> 0);
+    set_led_state(1, (number & (1 << 1)) >> 1);
+    set_led_state(2, (number & (1 << 2)) >> 2);
+    set_led_state(3, (number & (1 << 3)) >> 3);
+    set_led_state(4, (number & (1 << 4)) >> 4);
+    set_led_state(5, (number & (1 << 5)) >> 5);
+    set_led_state(6, (number & (1 << 6)) >> 6);
+    set_led_state(7, (number & (1 << 7)) >> 7);
 }
 
 void binary_count() {
-    for (uint8_t i = 0; i < 255; i++) {
+    // Count up
+    for (uint8_t i = 0; i < 255 && mode == MODE_BINARY; i++) {
+        display_binary(i);
+        _delay_ms(DELAY_TIME);
+    }
+    
+    // Check if mode has changed
+    if (mode != MODE_BINARY) {
+        return;
+    }
+
+    // Count down
+    for (uint8_t i = 255; i > 0 && mode == MODE_BINARY; i--) {
         display_binary(i);
         _delay_ms(DELAY_TIME);
     }
