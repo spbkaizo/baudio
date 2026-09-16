@@ -134,3 +134,54 @@ At this point, you should build out the VU meter.  By now, it should be obvious 
 ### Anything Missing?
 
 Have a look on the board, everything should be mostly populated, apart from the analogue pot unless you intend to use it.  Add in the switches that are missing, and anything else that hasn't been populated.
+
+## Stage 2 - Programming the microcontrollers
+
+The board is now built, but both ATtiny1614s are blank. Until they are
+programmed the LEDs will do nothing and the volume buttons will not respond.
+
+You need a UPDI programmer. UPDI needs a single data wire plus ground, and
+optionally power, so this is far less painful than the ISP headers you may be
+used to. A serial adapter with a resistor between TX and RX works, and
+purpose-built programmers are cheap.
+
+You do not need a compiler. Download the firmware from the
+[releases page](https://github.com/spbkaizo/baudio/releases), where each
+tagged version has the `.hex` files attached, built from that exact source:
+
+```sh
+curl -LO https://github.com/spbkaizo/baudio/releases/latest/download/vu-meter.hex
+curl -LO https://github.com/spbkaizo/baudio/releases/latest/download/volume-control.hex
+```
+
+Then flash each microcontroller in turn, adjusting the port to match your
+programmer:
+
+```sh
+avrdude -c serialupdi -P /dev/ttyUSB0 -p attiny1614 -U flash:w:vu-meter.hex:i
+avrdude -c serialupdi -P /dev/ttyUSB0 -p attiny1614 -U flash:w:volume-control.hex:i
+```
+
+Note these are two physically separate chips, so each one needs its own
+programming connection: the VU meter ATtiny drives the LEDs, and the volume
+control ATtiny drives the AD5242 digital potentiometer.
+
+If you would rather build the firmware from source, or want to change what it
+does, the Firmware section of [README.md](README.md) covers the toolchain and
+the device pack avr-gcc needs for this part.
+
+### Proof of life
+
+On power-up the volume control firmware blinks `BAUDIO` in Morse on its LED,
+so if you fitted RLED and its LED you have an immediate indication that the
+chip is programmed and running.
+
+The VU meter lights all eight LEDs at startup and holds them for around a
+second and a half while it calibrates its baseline, then begins metering. That
+serves the same purpose and also checks every LED is fitted the right way
+round: any that stays dark during that period is either in backwards or not
+soldered properly.
+
+Before you chase a fault in the VU meter, read
+[HARDWARE-ISSUES.md](HARDWARE-ISSUES.md): on the v1.4 board the right channel
+is routed to a pin that has no ADC, so it cannot work as designed.

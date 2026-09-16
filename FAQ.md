@@ -28,6 +28,25 @@ If you can afford it, then look into buying a hot air rework station.  https://l
 
 They're not terribly expensive, and using one of these along with soldering paste you'll soo get the hang of it, after doing a few of the practice boards.
 
+# Do I need to write any code?
+
+No. The two ATtiny1614s do need programming once the board is built, but
+ready-to-flash `.hex` files are attached to every release on
+[the releases page](https://github.com/spbkaizo/baudio/releases). You need a
+UPDI programmer and `avrdude`, not a compiler. The Programming section of
+[BUILD.md](BUILD.md) has the commands.
+
+If you do want to change what the firmware does, the source is in the
+`vu-meter`, `volume-control` and `adc-debug` directories, and the Firmware
+section of [README.md](README.md) covers building it.
+
+# Does everything on the board work?
+
+Not quite. On the v1.4 board the VU meter's right channel is routed to a pin
+that has no analogue input on the ATtiny1614, so it cannot be read. The left
+channel is fine. This and anything else found is recorded in
+[HARDWARE-ISSUES.md](HARDWARE-ISSUES.md), along with what a fix would involve.
+
 # Will you build one of these for me?
 
 Nope.  Sorry, the fun is in the building

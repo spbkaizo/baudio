@@ -37,7 +37,7 @@ The LM4562 is a high-performance audio operational amplifier (op-amp) known for 
 
 In summary, the LM4562's low distortion and noise, high slew rate, wide bandwidth, high output drive capability, and excellent sound quality make it an outstanding choice for both the first stage and buffer stage of a headphone amplifier. Its specifications and performance align well with the requirements for high-fidelity audio amplification, ensuring that the audio signal is amplified with minimal alteration to its original quality.
 
-[Datasheet for the LM4562](datasheet/lm4562.pdf)
+[Datasheet for the LM4562](datasheets/lm4562.pdf)
 
 
 ### Capacitors
