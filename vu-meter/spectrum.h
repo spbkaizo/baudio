@@ -4,7 +4,6 @@
 #define SPECTRUM_H
 
 #include <stdint.h>
-#include <math.h>
 
 // Initializes the spectrum analyzer module.
 void spectrum_init();

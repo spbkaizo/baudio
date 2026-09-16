@@ -78,6 +78,7 @@ int main(void) {
     init_ports();
     timer_init();  // Initialize the timer
     setup_adc();
+    spectrum_init();  // Clear the FFT buffers before any mode change can use them
 
 #ifdef USE_LCD
     lcd_init(&lcd, 0x20, 16, 2);  // Initialize the LCD with address 0x20, 16 columns, 2 rows
