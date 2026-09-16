@@ -30,12 +30,26 @@ int fix_fft(char fr[], char fi[], int m, int inverse);
 */
 int fix_fftr(char f[], int m, int inverse);
 
-// inline this here:
-static inline char FIX_MPY(char a, char b) {
+/* Fixed-point multiply with rounding, returning a Q7 result.
+
+   The product is taken in int, shifted down by 6, then rounded by adding the
+   bit shifted out. The result is clamped to the signed 8-bit range: with both
+   inputs at -128 the rounded value is +128, which does not fit and would wrap
+   to -128, inverting the sign inside the butterfly. That case cannot arise
+   while one operand always comes from the sine table, whose magnitude never
+   exceeds 127, but the clamp costs little and removes the trap.
+
+   int8_t rather than char, whose signedness is implementation-defined. */
+static inline int8_t FIX_MPY(int8_t a, int8_t b) {
     int c = ((int)a * (int)b) >> 6;
-    b = c & 0x01;
-    a = (c >> 1) + b;
-    return a;
+    int rounded = (c >> 1) + (c & 0x01);
+
+    if (rounded > 127) {
+        rounded = 127;
+    } else if (rounded < -128) {
+        rounded = -128;
+    }
+    return (int8_t)rounded;
 }
 
 #endif // FIXFFT_H
