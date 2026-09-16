@@ -10,12 +10,15 @@
 #define MODE_BINARY 2
 #define MODE_SPECTRUM_ANALYZER 3
 #define MODE_MIDDLE_OUT 4  // New mode for middle out
+#define MODE_COUNT 5       // Number of LED modes the button cycles through
 
 #ifdef USE_LCD
 // LCD modes
 #define MODE_LCD_MESSAGE 0
 #define MODE_LCD_COUNTER 1
 #define MODE_LCD_SENSOR 2
+#undef MODE_COUNT
+#define MODE_COUNT 3       // Only three LCD modes exist
 #endif
 
 #include <avr/io.h>

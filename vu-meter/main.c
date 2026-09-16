@@ -20,7 +20,6 @@ LCD_I2C lcd;  // Create an instance of the LCD_I2C struct
 #define DEBOUNCE_TIME 50  // Debounce time in milliseconds
 
 volatile uint8_t mode = MODE_VU_METER;
-volatile uint8_t last_state = 1;  // Initialize to 1 since the pull-up resistor keeps the pin high when not pressed
 
 uint16_t baseline_left = 0;
 uint16_t baseline_right = 0;
@@ -32,7 +31,12 @@ ISR(PORTB_PORT_vect) {
 
     if (current_time - last_debounce_time > DEBOUNCE_TIME) {
         if (current_state == 0) {  // Check if button is pressed (state is low)
-            mode = (mode + 1) % 5;  // Update to include the new mode
+            /* MODE_COUNT tracks the mode list actually compiled in: five LED
+               modes, or three when USE_LCD is defined. A fixed wrap of 5 let
+               the LCD build reach modes 3 and 4, which no case handles, and
+               the display stopped updating until the button was pressed
+               past them. */
+            mode = (mode + 1) % MODE_COUNT;
             last_debounce_time = current_time;  // Update the last debounce time
         }
     }
