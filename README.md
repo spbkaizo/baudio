@@ -3,6 +3,9 @@
 ![Photo](images/IMG_3298.jpeg "Photo")
 ![PCB](images/PCB_v1.4_2024-05-25.svg "PCB")
 
+Known faults in the current board revision are recorded in
+[HARDWARE-ISSUES.md](HARDWARE-ISSUES.md).
+
 ## What is it?
 
 An experiment in exactly how much can you cram into a business card PCB, for audio electronics.

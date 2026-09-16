@@ -14,7 +14,12 @@ void usart_init(void) {
     USART0.CTRLB = USART_RXEN_bm | USART_TXEN_bm;
 
     /* USART0 is on PB2 (TXD) and PB3 (RXD) in the default port mux
-       position. PA1 and PA2 carry no USART signal on this part. */
+       position. PA1 and PA2 carry no USART signal on this part.
+
+       PB2 is also where the VU meter sheet routes the right channel audio
+       net; see HW-2 in HARDWARE-ISSUES.md. The two firmwares are separate
+       builds so they never contend, but serial debug cannot be used while
+       that input is connected. */
     PORTB.DIR |= (1 << 2);   // PB2 as output for USART TX
     PORTB.DIR &= ~(1 << 3);  // PB3 as input for USART RX
 }
