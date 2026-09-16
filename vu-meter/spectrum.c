@@ -17,8 +17,7 @@ static char real[FFT_SIZE];     // Array for real components of the signal.
 static char imag[FFT_SIZE];     // Array for imaginary components of the signal (initially zero).
 
 void spectrum_init() {
-    setup_adc();  // Setup ADC from adc.h
-    // Initialize real and imaginary arrays to zero.
+    /* The ADC is configured once by main(); this only clears the buffers. */
     for (int i = 0; i < FFT_SIZE; i++) {
         real[i] = 0;
         imag[i] = 0;
