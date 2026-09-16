@@ -18,35 +18,71 @@
 uint8_t log_volume_map[] = {
     0, 1, 2, 3, 6, 10, 16, 23, 32, 43, 56, 70, 85, 100, 120, 140, 160, 180, 200, 220, 240, 255
 };
-int current_index = 6;  // Current index in the logarithmic map
+#define VOLUME_STEPS (sizeof(log_volume_map) / sizeof(log_volume_map[0]))
+uint8_t current_index = 6;  // Current index in the logarithmic map
 
 
+
+#define I2C_SCL_HZ 100000UL
+/* MBAUD per ATtiny1614 datasheet: F_CPU/(2*f_SCL) - 5 - (F_CPU*t_rise)/2.
+   t_rise is treated as negligible for the short traces on this board. */
+#define I2C_MBAUD ((uint8_t)((F_CPU / (2 * I2C_SCL_HZ)) - 5))
+
+/* Bounds the WIF spin loops so a missing or wedged device cannot hang the
+   firmware. Each unit is one iteration, not a calibrated time. */
+#define I2C_TIMEOUT 10000
+
+/* Wait for the write-interrupt flag. Returns false on timeout. */
+static bool i2c_wait(void) {
+    uint16_t guard = I2C_TIMEOUT;
+    while (!(TWI0.MSTATUS & TWI_WIF_bm)) {
+        if (--guard == 0) {
+            return false;
+        }
+    }
+    return true;
+}
 
 void i2c_init(void) {
-    TWI0.MBAUD = (uint8_t)((F_CPU - 2 * 100000UL) / (2 * 100000UL));
+    TWI0.MBAUD = I2C_MBAUD;
     TWI0.MCTRLA = TWI_ENABLE_bm;
     TWI0.MSTATUS = TWI_BUSSTATE_IDLE_gc;
 }
 
-void i2c_start(void) {
-    TWI0.MADDR = AD5242_ADDR << 1;
-    while (!(TWI0.MSTATUS & TWI_WIF_bm));
-}
-
 void i2c_stop(void) {
-    TWI0.MCTRLB |= TWI_MCMD_STOP_gc;
+    TWI0.MCTRLB = TWI_MCMD_STOP_gc;
 }
 
-void i2c_write(uint8_t data) {
+/* Addresses the device for writing. Returns false if the bus timed out, the
+   device did not acknowledge, or the controller flagged an error. */
+static bool i2c_start(void) {
+    TWI0.MADDR = AD5242_ADDR << 1;  /* 7-bit address, R/W = 0 */
+    if (!i2c_wait()) {
+        return false;
+    }
+    if (TWI0.MSTATUS & (TWI_ARBLOST_bm | TWI_BUSERR_bm)) {
+        return false;
+    }
+    return !(TWI0.MSTATUS & TWI_RXACK_bm);
+}
+
+/* Sends one byte. Returns false if the byte was not acknowledged. */
+static bool i2c_write(uint8_t data) {
     TWI0.MDATA = data;
-    while (!(TWI0.MSTATUS & TWI_WIF_bm));
+    if (!i2c_wait()) {
+        return false;
+    }
+    return !(TWI0.MSTATUS & TWI_RXACK_bm);
 }
 
-void ad5242_set_wiper(uint8_t channel, uint8_t value) {
-    i2c_start();
-    i2c_write((channel << 7) | 0x00);
-    i2c_write(value);
+/* Writes one wiper. Always issues a STOP so a failed transfer releases the
+   bus instead of leaving the controller owning it. Returns false on error. */
+bool ad5242_set_wiper(uint8_t channel, uint8_t value) {
+    bool ok = i2c_start()
+           && i2c_write((channel << 7) | 0x00)  /* instruction: A/B select */
+           && i2c_write(value);                 /* data: wiper position */
     i2c_stop();
+    return ok;
 }
 
 void gpio_init(void) {
@@ -107,7 +143,7 @@ int main(void) {
     while (1) {
         if (debounce(VOLUME_UP_PIN)) {
             PORTA.OUT |= (1 << LED_PIN); // Turn on LED
-            if (current_index < sizeof(log_volume_map) / sizeof(log_volume_map[0]) - 1) {
+            if (current_index < VOLUME_STEPS - 1) {
                 current_index++;
                 ad5242_set_wiper(0, log_volume_map[current_index]);
                 ad5242_set_wiper(1, log_volume_map[current_index]);
