@@ -22,8 +22,14 @@ ISR(TCB0_INT_vect) {
 
 uint32_t millis() {
     uint32_t millis_copy;
+    uint8_t sreg = SREG;
+
+    /* Save and restore the interrupt flag rather than calling sei()
+       unconditionally: millis() is also called from inside PORTB_PORT_vect,
+       and re-enabling interrupts there would let the button ISR re-enter
+       itself and nest until the stack is exhausted. */
     cli();
     millis_copy = milliseconds;
-    sei();
+    SREG = sreg;
     return millis_copy;
 }
