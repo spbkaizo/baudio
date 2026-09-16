@@ -1,49 +1,48 @@
 // cylon.c
 #include <util/delay.h>
 #include "cylon.h"
-#include "adc.h"  // Include ADC functionality for speed control
+#include "led_control.h"
+#include "main.h"
 
-#define LED_PORT PORTA
-#define LED_PIN_START 1
-#define LED_PIN_COUNT 5  // Number of LEDs in the scanner
+/* Middle-out scanner. The two centre LEDs light first and the pair sweeps
+   outwards to the ends, then back in.
+
+   LEDs are driven through set_led_state() rather than by writing PORTA
+   directly: the eight LEDs are split across both ports and are not in pin
+   order (LED 0 is PB1, LED 5 is PA6), so a raw port write lights the wrong
+   ones and misses the two on PORTB entirely. */
+
+#define STEP_DELAY 60  // milliseconds per step
+#define HALF (LED_COUNT / 2)
 
 void init_cylon() {
-    // Initialize LEDs as outputs
-    LED_PORT.DIR |= ((1 << LED_PIN_COUNT) - 1) << LED_PIN_START;
+    /* Pin directions are set once by init_ports() in main.c. */
+    for (uint8_t i = 0; i < LED_COUNT; i++) {
+        set_led_state(i, 0);
+    }
+}
+
+/* Lights the mirrored pair at distance `offset` from the centre. */
+static void show_pair(uint8_t offset) {
+    for (uint8_t i = 0; i < LED_COUNT; i++) {
+        set_led_state(i, 0);
+    }
+    set_led_state(HALF - 1 - offset, 1);  // inner half, sweeping left
+    set_led_state(HALF + offset, 1);      // outer half, sweeping right
 }
 
 void run_cylon() {
-    static uint8_t direction = 0;  // 0 for increasing, 1 for decreasing
-    static uint8_t current_led = LED_PIN_START;
-
-    // Read ADC value to determine delay (speed control)
-    uint16_t speed = read_adc(ADC_CHANNEL_RIGHT);  // Adjust channel as needed
-    uint8_t delay = (speed / 512) + 10;  // Scale and offset the delay to make it noticeable
-
-    // Reset all LEDs
-    LED_PORT.OUT &= ~(((1 << LED_PIN_COUNT) - 1) << LED_PIN_START);
-    
-    // Set current LED
-    LED_PORT.OUT |= (1 << current_led);
-
-    // Update current LED based on direction
-    if (!direction) {
-        if (current_led < LED_PIN_START + LED_PIN_COUNT - 1) {
-            current_led++;
-        } else {
-            direction = 1;  // Change direction to decreasing
+    while (mode == MODE_MIDDLE_OUT) {
+        // Outwards: centre to the ends.
+        for (uint8_t offset = 0; offset < HALF && mode == MODE_MIDDLE_OUT; offset++) {
+            show_pair(offset);
+            _delay_ms(STEP_DELAY);
         }
-    } else {
-        if (current_led > LED_PIN_START) {
-            current_led--;
-        } else {
-            direction = 0;  // Change direction to increasing
-        }
-    }
 
-    // Delay based on ADC value
-    while (delay--) {
-        _delay_ms(1);  // Simple delay; consider using timers for non-blocking delay
+        // Inwards: ends back to the centre, skipping the positions just shown.
+        for (uint8_t offset = HALF - 1; offset > 0 && mode == MODE_MIDDLE_OUT; offset--) {
+            show_pair(offset - 1);
+            _delay_ms(STEP_DELAY);
+        }
     }
 }
-

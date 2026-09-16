@@ -8,6 +8,7 @@
 #include "binary.h"
 #include "vu2.h"
 #include "spectrum.h"
+#include "cylon.h"
 #include "timer.h"
 #include "main.h"
 
@@ -149,8 +150,8 @@ int main(void) {
             case MODE_SPECTRUM_ANALYZER:
                 spectrum_update();
                 break;
-            case MODE_MIDDLE_OUT:  // New case for middle out mode
-                volume_meter_task(ADC_CHANNEL_LEFT, ADC_CHANNEL_RIGHT);  // Reuse the volume meter task for now
+            case MODE_MIDDLE_OUT:
+                run_cylon();
                 break;
         }
 #endif
