@@ -6,7 +6,14 @@ AVRDUDE = avrdude
 PROGRAMMER_TYPE = serialupdi
 PORT = /dev/tty.usbserial-A50285BI  # Adjust this as necessary for your system
 
-CFLAGS = -mmcu=$(MCU) -DF_CPU=$(F_CPU) -Os
+# Microchip ATtiny DFP: avr-gcc has no built-in support for the tinyAVR
+# 0/1-series, so the device specs and headers come from the pack.
+# Download from https://packs.download.microchip.com (Microchip.ATtiny_DFP)
+# and unzip it here, or override on the command line: make DFP=/path/to/pack
+DFP ?= $(HOME)/local/avr-dfp
+
+CFLAGS = -mmcu=$(MCU) -B $(DFP)/gcc/dev/$(MCU) -isystem $(DFP)/include \
+         -DF_CPU=$(F_CPU) -Os -Wall
 LDFLAGS = 
 
 # Source and object files
