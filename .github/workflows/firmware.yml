@@ -1,0 +1,164 @@
+name: Firmware
+
+# Builds the three ATtiny1614 firmwares and publishes the .hex files.
+#
+# Every push and pull request uploads them as build artefacts. Pushing a
+# version tag also attaches them to a GitHub Release, which is the copy
+# intended for distribution.
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  # avr-gcc has no built-in support for the tinyAVR 0/1-series, so the device
+  # specs and headers come from Microchip's ATtiny device family pack. Pinned
+  # rather than floating: a firmware build should not change because a vendor
+  # published a new pack.
+  DFP_VERSION: 3.4.278
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Needed by the release step; the default token is read-only.
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install avr-gcc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-avr binutils-avr avr-libc
+          avr-gcc --version | head -1
+
+      - name: Cache ATtiny DFP
+        id: cache-dfp
+        uses: actions/cache@v4
+        with:
+          path: dfp
+          key: attiny-dfp-${{ env.DFP_VERSION }}
+
+      - name: Download ATtiny DFP
+        if: steps.cache-dfp.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          url="https://packs.download.microchip.com/Microchip.ATtiny_DFP.${DFP_VERSION}.atpack"
+          curl -fsSL --retry 3 --retry-delay 5 -o attiny.atpack "$url"
+          mkdir -p dfp
+          unzip -qo attiny.atpack -d dfp
+          # Keep only what the compiler needs; the full pack is ~33 MB and
+          # most of it is IDE and assembler support.
+          find dfp -mindepth 1 -maxdepth 1 ! -name gcc ! -name include -exec rm -rf {} +
+          test -d dfp/gcc/dev/attiny1614
+          test -f dfp/include/avr/iotn1614.h
+
+      - name: Check the toolchain can target the ATtiny1614
+        run: |
+          set -euo pipefail
+          # Fails clearly here if the distribution's avr-gcc cannot use the
+          # pack, rather than surfacing as a wall of undeclared-register
+          # errors from the first real source file.
+          printf '#include <avr/io.h>\nint main(void){ PORTA.DIR = 0; ADC0.CTRLA = 0; }\n' > probe.c
+          avr-gcc -mmcu=attiny1614 -B "$PWD/dfp/gcc/dev/attiny1614" \
+                  -isystem "$PWD/dfp/include" -Os -Wall -Werror \
+                  -o probe.elf probe.c
+          rm -f probe.c probe.elf
+
+      - name: Build
+        run: |
+          set -euo pipefail
+          for project in vu-meter volume-control adc-debug; do
+            echo "::group::$project"
+            make -C "$project" DFP="$PWD/dfp"
+            echo "::endgroup::"
+          done
+
+      - name: Report sizes
+        run: |
+          set -euo pipefail
+          {
+            echo "### Firmware sizes"
+            echo
+            echo "ATtiny1614: 16384 bytes flash, 2048 bytes SRAM."
+            echo
+            echo "| Firmware | Flash | SRAM |"
+            echo "| --- | --- | --- |"
+            for project in vu-meter volume-control adc-debug; do
+              read -r text data bss _ < <(avr-size "$project/main.elf" | tail -1)
+              flash=$((text + data))
+              sram=$((data + bss))
+              printf '| %s | %d (%d%%) | %d (%d%%) |\n' \
+                "$project" "$flash" $((flash * 100 / 16384)) \
+                "$sram" $((sram * 100 / 2048))
+            done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check the firmware fits
+        run: |
+          set -euo pipefail
+          status=0
+          for project in vu-meter volume-control adc-debug; do
+            read -r text data bss _ < <(avr-size "$project/main.elf" | tail -1)
+            flash=$((text + data))
+            sram=$((data + bss))
+            if [ "$flash" -gt 16384 ]; then
+              echo "::error::$project uses $flash bytes of flash, over the 16384 available"
+              status=1
+            fi
+            if [ "$sram" -gt 2048 ]; then
+              echo "::error::$project uses $sram bytes of SRAM, over the 2048 available"
+              status=1
+            fi
+          done
+          exit $status
+
+      - name: Collect the hex files
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          for project in vu-meter volume-control adc-debug; do
+            cp "$project/main.hex" "dist/${project}.hex"
+          done
+          # Lets anyone verify a downloaded file matches what CI produced.
+          (cd dist && sha256sum ./*.hex > SHA256SUMS)
+          cat dist/SHA256SUMS
+
+      - name: Upload build artefacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: baudio-firmware-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true
+          body: |
+            Firmware for the BAUDI/O board, built from ${{ github.ref_name }}.
+
+            | File | Target |
+            | --- | --- |
+            | `vu-meter.hex` | ATtiny1614 on the VU meter daughterboard |
+            | `volume-control.hex` | ATtiny1614 driving the AD5242 volume control |
+            | `adc-debug.hex` | ATtiny1614 serial ADC debug tool |
+
+            Verify a download against `SHA256SUMS`, then flash with a UPDI
+            programmer:
+
+            ```
+            avrdude -c serialupdi -P /dev/ttyUSB0 -p attiny1614 -U flash:w:vu-meter.hex:i
+            ```
+
+            Adjust the port to suit your programmer. Builds are compile-tested
+            only; see [HARDWARE-ISSUES.md](HARDWARE-ISSUES.md) for known faults
+            in the v1.4 board, including the right channel of the VU meter.
