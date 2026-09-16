@@ -89,6 +89,7 @@ void lcd_begin(LCD_I2C *lcd, uint8_t cols, uint8_t lines) {
     if (lines > 1) {
         lcd->displayfunction |= LCD_2LINE;
     }
+    lcd->cols = cols;
     lcd->numlines = lines;
     lcd->currline = 0;
 
@@ -134,6 +135,11 @@ void lcd_set_cursor(LCD_I2C *lcd, uint8_t col, uint8_t row) {
     uint8_t row_offsets[] = { 0x00, 0x40, 0x14, 0x54 };
     if (row >= lcd->numlines) {
         row = lcd->numlines - 1;
+    }
+    /* Clamp the column too, so a caller cannot walk the DDRAM address past
+       the end of the line and into the next row's buffer. */
+    if (lcd->cols > 0 && col >= lcd->cols) {
+        col = lcd->cols - 1;
     }
     lcd_command(lcd, LCD_SETDDRAMADDR | (col + row_offsets[row]));
 }
