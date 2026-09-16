@@ -73,7 +73,7 @@ Every ADC-capable pin on the part is already committed:
 
 | Pin | ADC | Current use |
 | --- | --- | --- |
-| PA0 | AIN0 | UPDI / reset |
+| PA0 | AIN0 | UPDI / reset, via R17 470R |
 | PA1 | AIN1 | LED (`rled3`) |
 | PA2 | AIN2 | LED (`rled4`) |
 | PA3 | AIN3 | LED (`rled5`) |
@@ -82,7 +82,7 @@ Every ADC-capable pin on the part is already committed:
 | PA6 | AIN6 | LED (`rled6`) |
 | PA7 | AIN7 | **left channel** |
 | PB0 | AIN11 | LED (`rled2`) |
-| PB1 | AIN10 | LED (`rled1`) via R17 |
+| PB1 | AIN10 | LED (`rled1`) |
 | PB2 | none | **right channel (unusable)** |
 | PB3 | none | mode button |
 
@@ -108,7 +108,8 @@ not one. Any fix has to give something up.
    v2.0 is re-spinning the microcontroller for other reasons.
 
 Option 1 is the recommendation: one net swap on the board, one line in the
-firmware, no new components, no loss of function.
+firmware, no new components, no loss of function. It is specified for the next
+board revision in [PCB-REV-1.5.md](PCB-REV-1.5.md).
 
 ### Workaround until then
 

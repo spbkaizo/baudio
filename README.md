@@ -4,7 +4,8 @@
 ![PCB](images/PCB_v1.4_2024-05-25.svg "PCB")
 
 Known faults in the current board revision are recorded in
-[HARDWARE-ISSUES.md](HARDWARE-ISSUES.md).
+[HARDWARE-ISSUES.md](HARDWARE-ISSUES.md), and the fix for the next revision in
+[PCB-REV-1.5.md](PCB-REV-1.5.md).
 
 ## What is it?
 
