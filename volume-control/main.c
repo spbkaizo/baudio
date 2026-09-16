@@ -2,11 +2,20 @@
 #include <util/delay.h>
 #include <stdbool.h>
 
-#define AD5242_ADDR 0x2C  // Adjust based on A0, A1 pins setup
-#define VOLUME_UP_PIN PIN2 // PA1 for Volume Down
-#define VOLUME_DOWN_PIN PIN1 // PA2 for Volume Up
-#define LED_PIN PIN3        // PA3 for LED
+/* 7-bit address. The five high bits are fixed at 01011 and the low two
+   follow the AD0 and AD1 pins, so this assumes both are tied low. */
+#define AD5242_ADDR 0x2C
 
+/* Buttons are active low with internal pull-ups; the LED is active high.
+   The comments here previously named the opposite pin for each button. */
+#define VOLUME_UP_PIN PIN2_bp    // PA2
+#define VOLUME_DOWN_PIN PIN1_bp  // PA1
+#define LED_PIN PIN3_bp          // PA3
+
+
+#define DEBOUNCE_MS 50    // Settling time before a button read is trusted
+#define LED_BLINK_MS 40   // Acknowledgement flash on a volume step
+#define REPEAT_MS 150     // Interval at which a held button repeats
 
 #define DOT_DURATION 100
 #define DASH_DURATION 300
@@ -88,19 +97,27 @@ bool ad5242_set_wiper(uint8_t channel, uint8_t value) {
 void gpio_init(void) {
     // Initialize GPIO for buttons as inputs and enable internal pull-up resistors
     PORTA.DIR &= ~((1 << VOLUME_UP_PIN) | (1 << VOLUME_DOWN_PIN));  // Buttons as inputs
-    PORTA.PIN1CTRL |= PORT_PULLUPEN_bm; // Enable pull-up for Volume Up
-    PORTA.PIN2CTRL |= PORT_PULLUPEN_bm; // Enable pull-up for Volume Down
+    PORTA.PIN1CTRL |= PORT_PULLUPEN_bm; // Enable pull-up for Volume Down (PA1)
+    PORTA.PIN2CTRL |= PORT_PULLUPEN_bm; // Enable pull-up for Volume Up (PA2)
     PORTA.DIR |= (1 << LED_PIN);  // LED as output
 }
 
-bool debounce(uint8_t pin) {
-    if (!(PORTA.IN & (1 << pin))) { // Check if button is pressed (low due to pull to ground)
-        _delay_ms(50); // Debounce delay
-        if (!(PORTA.IN & (1 << pin))) {
-            return true;
-        }
+/* True while the button on `pin` reads pressed, confirmed across a short
+   settling delay. Active low: the internal pull-up holds the pin high until
+   the button pulls it to ground. */
+static bool button_pressed(uint8_t pin) {
+    if (PORTA.IN & (1 << pin)) {
+        return false;
     }
-    return false;
+    _delay_ms(DEBOUNCE_MS);
+    return !(PORTA.IN & (1 << pin));
+}
+
+/* Applies a wiper setting to both channels. Returns false if either write
+   failed, so the caller can tell a real change from a dropped transfer. */
+static bool apply_volume(uint8_t index) {
+    bool ok = ad5242_set_wiper(0, log_volume_map[index]);
+    return ad5242_set_wiper(1, log_volume_map[index]) && ok;
 }
 
 void morse_signal(char* code) {
@@ -135,30 +152,44 @@ int main(void) {
     i2c_init();
     gpio_init();
 
-    ad5242_set_wiper(0, log_volume_map[current_index]); // Initial volume
-    ad5242_set_wiper(1, log_volume_map[current_index]);
+    apply_volume(current_index);  // Initial volume
 
     morse_signal("-... .- ..- -.. .. --- /");
 
     while (1) {
-        if (debounce(VOLUME_UP_PIN)) {
-            PORTA.OUT |= (1 << LED_PIN); // Turn on LED
-            if (current_index < VOLUME_STEPS - 1) {
+        bool up = button_pressed(VOLUME_UP_PIN);
+        bool down = button_pressed(VOLUME_DOWN_PIN);
+        bool changed = false;
+
+        /* Both buttons held is ambiguous, so ignore it rather than letting
+           whichever test runs first win. */
+        /* Commit the new index only once the pot has acknowledged it, so a
+           dropped transfer does not leave the stored index describing a
+           wiper position the device never took. */
+        if (up && !down && current_index < VOLUME_STEPS - 1) {
+            changed = apply_volume(current_index + 1);
+            if (changed) {
                 current_index++;
-                ad5242_set_wiper(0, log_volume_map[current_index]);
-                ad5242_set_wiper(1, log_volume_map[current_index]);
             }
-        }
-        if (debounce(VOLUME_DOWN_PIN)) {
-            PORTA.OUT |= (1 << LED_PIN); // Turn on LED
-            if (current_index > 0) {
+        } else if (down && !up && current_index > 0) {
+            changed = apply_volume(current_index - 1);
+            if (changed) {
                 current_index--;
-                ad5242_set_wiper(0, log_volume_map[current_index]);
-                ad5242_set_wiper(1, log_volume_map[current_index]);
             }
         }
-        _delay_ms(100); // Add a small delay to reduce bouncing effect further
-        PORTA.OUT &= ~(1 << LED_PIN); // Turn off LED
+
+        /* Flash only on a step that actually happened. Lighting the LED on
+           any press, as before, signalled success at the ends of the range
+           where nothing moved, and when the pot failed to acknowledge. */
+        if (changed) {
+            PORTA.OUT |= (1 << LED_PIN);
+            _delay_ms(LED_BLINK_MS);
+            PORTA.OUT &= ~(1 << LED_PIN);
+        }
+
+        /* Held buttons repeat at this interval, which is the intended way to
+           traverse the range; a single tap moves one step. */
+        _delay_ms(REPEAT_MS);
     }
 }
 
