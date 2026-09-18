@@ -142,26 +142,32 @@ Noted in `adc-debug/usart.c` alongside the pin assignment.
 
 Recorded so the reason for a change is not lost.
 
-### v1.3 to v1.4: a resistor to ground on each audio input
+### v1.3 to v1.4: a resistor to ground on each audio channel
 
-Recorded from the author's recollection: v1.4 fixed a bug that needed a
-resistor to ground on each of the two audio channels.
+v1.4 fixed a problem that needed a resistor to ground on each of the two audio
+channels. A built v1.3 board carries the fix as a hand-soldered bodge: two
+through-hole resistors on the underside, banded brown-black-orange-gold, so
+**10k each**. They share a common connection at one end and fan out to two
+separate pads at the other, positioned beside the **AD5242** digital
+potentiometer.
 
-On the v1.4 schematic the resistors that fit that description are **R11 and
-R12**, 10k each, tying the VU meter's two audio inputs to DGND. With R9 and
-R10 feeding the same nodes from +5V they form 10k/10k dividers biasing each
-input to roughly mid-rail, which is what the ADC needs to see a signal that
-swings both ways.
+![v1.3 bodge](images/bodges/v1.3-ground-resistor-bodge.jpg)
 
-Without a leg to ground the input floats toward +5V, the ADC sits near full
-scale, and the firmware's baseline calibration has nothing usable to centre
-on.
+That location points at the volume control rather than the VU meter. The
+AD5242 exposes A, W and B terminals for each channel, and wired as a volume
+divider the B terminal wants to be at ground: without it the wiper has no
+reference to divide against. 10k also matches the element value of the
+AD5242BRZ10 fitted here.
 
-Not verified against a v1.3 schematic, which is not in this repository, so
-treat the specific designators as likely rather than confirmed. What matters
-in practice: **do not use a v1.3 board to test HW-1 below.** It carries this
-fault as well, so the right channel behaviour there says nothing about the
-pin allocation. Use a v1.4 board.
+Not confirmed against a v1.3 schematic, which is not in this repository, and
+the exact pads were read from a photograph rather than a netlist. Treat the
+B1/B2 attribution as likely rather than established. Worth buzzing out on the
+built board to settle it, since the answer determines whether v1.4 carries the
+fix in copper or whether every board still needs the bodge.
+
+Practical consequence regardless: **do not use a v1.3 board to test HW-1
+below.** Unless it has the bodge fitted it does not represent the shipped
+design, and the volume control behaviour will differ from a v1.4 board.
 
 ---
 
