@@ -5,7 +5,10 @@ is wrong, how it was established, and what a fix would involve. Firmware
 workarounds are noted where one exists.
 
 Board revision under discussion: **v1.4** (`gerber/Gerber_BAUDIO_v1.4_2024-05-25.zip`,
-VU meter sheet rev 1.3, 2024-02-28).
+VU meter sheet rev 1.3).
+
+HW-1 below is original to the design: it is present in the VU meter sheet at
+rev 1.0, dated 2024-02-28, and unchanged since.
 
 ---
 
@@ -161,13 +164,28 @@ AD5242BRZ10 fitted here.
 
 Not confirmed against a v1.3 schematic, which is not in this repository, and
 the exact pads were read from a photograph rather than a netlist. Treat the
-B1/B2 attribution as likely rather than established. Worth buzzing out on the
-built board to settle it, since the answer determines whether v1.4 carries the
-fix in copper or whether every board still needs the bodge.
+B1/B2 attribution as likely rather than established.
 
-Practical consequence regardless: **do not use a v1.3 board to test HW-1
-below.** Unless it has the bodge fitted it does not represent the shipped
-design, and the volume control behaviour will differ from a v1.4 board.
+Per the author, this was the **only** change between v1.3 and v1.4. Two things
+follow.
+
+A v1.3 board **with the bodge fitted is electrically equivalent to a v1.4**, so
+it can be used to test HW-1 below. Without the bodge it differs only in the
+volume control, which HW-1 does not involve, so even an unmodified v1.3 board
+will show the right channel fault.
+
+More significantly, **HW-1 predates v1.3 and has never been fixed.** The right
+channel of the VU meter has not worked on any board built from this design.
+
+The VU meter sheet at rev 1.0, dated 2024-02-28 and recoverable from commit
+`63e706b`, carries the same ATtiny1614 pin arrangement as v1.4, with the two
+ADC nets in the same places. The fault is therefore original to the design
+rather than introduced by a later revision.
+
+That is consistent with the firmware history, where the meter was repeatedly
+retuned rather than diagnosed: a meter whose right half never responds
+correctly reads as something needing adjustment rather than something wired to
+a pin that cannot read it.
 
 ---
 
